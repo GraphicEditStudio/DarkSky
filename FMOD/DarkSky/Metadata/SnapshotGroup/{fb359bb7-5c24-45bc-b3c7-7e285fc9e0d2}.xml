@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="SnapshotList" id="{fb359bb7-5c24-45bc-b3c7-7e285fc9e0d2}">
+<<<<<<< Updated upstream
+=======
+		<relationship name="items">
+			<destination>{09977105-166d-4d1e-81f7-7f01a10de07d}</destination>
+		</relationship>
+>>>>>>> Stashed changes
 		<relationship name="mixer">
 			<destination>{3419f4cf-49fc-4714-af06-16545e7669f7}</destination>
 		</relationship>

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Bank" id="{1c027e0a-b4b8-476a-ab73-dc0cd46a22f2}">
+<<<<<<< Updated upstream
+=======
+		<property name="color">
+			<value>Red</value>
+		</property>
+>>>>>>> Stashed changes
 		<property name="name">
 			<value>Master</value>
 		</property>
