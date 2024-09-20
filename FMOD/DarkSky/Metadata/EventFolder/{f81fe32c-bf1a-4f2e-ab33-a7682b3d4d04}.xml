@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="EventFolder" id="{cc174b2b-70b4-4ebe-9042-385b763d3c97}">
-<<<<<<< Updated upstream
-		<property name="name">
-			<value>New Folder</value>
-=======
+	<object class="EventFolder" id="{f81fe32c-bf1a-4f2e-ab33-a7682b3d4d04}">
 		<property name="color">
-			<value>Blue</value>
+			<value>Yellow</value>
 		</property>
 		<property name="name">
-			<value>Music</value>
->>>>>>> Stashed changes
+			<value>UI</value>
 		</property>
 		<relationship name="folder">
 			<destination>{f18608f9-f46b-40b9-b0b2-b21e395c7045}</destination>
