@@ -1,0 +1,9 @@
+{f2d48c93-4fab-492d-add3-3963444fa28f} bank:/Master
+{6ac9ac47-3ed0-056f-2b9a-b39db5bca417} bank:/Master.strings
+{4ab9ad03-dd9b-4c76-9b7e-008159c911b9} bank:/SFX
+{d22f852f-20d8-41f8-913d-3a4e746fc3c6} bank:/VoiceOver
+{f6c52187-0f37-4a90-a267-4bbcd565c8ad} bus:/
+{985d1588-929e-4bae-8949-0a2e0f5b339c} bus:/Music
+{3e50cc3f-057c-43f5-80fb-227946d2c21b} bus:/Reverb
+{c3a68d7b-b936-47be-ad80-1fd09ecca75f} event:/VoiceOver/AI Game Start
+{03efe858-99d4-41ac-8129-3883654250ec} vca:/Music

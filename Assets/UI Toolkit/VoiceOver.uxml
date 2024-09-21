@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="root" style="flex-grow: 1; flex-direction: column-reverse;">
+        <engine:VisualElement name="dialogueContainer" style="flex-grow: 1; flex-direction: column-reverse; justify-content: flex-start; align-items: center; align-self: auto; align-content: flex-start; height: 300px; max-height: 300px;">
+            <engine:Label text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500.&#10;Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500" name="dialogue" data-source-type="VoiceOver.VoiceOverManager, Assembly-CSharp" parse-escape-sequences="true" style="left: auto; right: auto; flex-direction: column; padding-bottom: 4px; -unity-font-definition: resource(&apos;FlatSkin/Font/Roboto-MediumItalic&apos;); font-size: 45px; -unity-text-align: middle-center; white-space: normal; text-overflow: ellipsis;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
