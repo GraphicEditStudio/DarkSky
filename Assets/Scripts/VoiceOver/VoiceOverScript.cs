@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FMOD.Studio;
+using UnityEngine;
 
 namespace VoiceOver
 {
@@ -24,7 +25,10 @@ namespace VoiceOver
             
             Started = true;
             audioEventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
-            audioEventInstance.start();
+            if (audioEventInstance.isValid())
+            {
+                audioEventInstance.start();
+            }
             
             CurrentDialogueIndex = 0;
             return dialogues[CurrentDialogueIndex];
