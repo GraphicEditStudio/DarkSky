@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Unity.Properties;
 using UnityEngine;
@@ -18,10 +19,15 @@ namespace VoiceOver
         private VoiceOverDialogue currentDialogue;
         private UIDocument uiDocument;
         private Label dialogLabel;
+        private CancellationTokenSource playDialogueCancellationTokenSource;
+        private CancellationToken playDialogueCancellationToken;
+        private CancellationTokenSource clearScreenCancellationTokenSource;
+        private CancellationToken clearScreenCancellationToken;
         protected override void OnAwake()
         {
             voiceOverQueue = new Queue<VoiceOverAsset>();
             dialogTextBuilder = new StringBuilder();
+            
 
             uiDocument = GetComponentInChildren<UIDocument>();
             dialogLabel = uiDocument.rootVisualElement.Q("dialogue") as Label;
@@ -37,6 +43,13 @@ namespace VoiceOver
             if (asset.overrideQueue)
             {
                 voiceOverQueue.Clear();
+                currentAsset.script.StopAudio();
+                if (playDialogueCancellationToken.CanBeCanceled)
+                {
+                    playDialogueCancellationTokenSource.Cancel();
+                    playDialogueCancellationTokenSource.Dispose();
+                }
+                currentAsset = null;
             }
 
             if (voiceOverQueue.Contains(asset))
@@ -56,12 +69,19 @@ namespace VoiceOver
             if (currentAsset != null && !currentAsset.script.Started)
             {
                 currentDialogue = currentAsset.script.StartDialogue();
-                PlayCurrentDialogue().DoNotAwait();
+                playDialogueCancellationTokenSource = new CancellationTokenSource();
+                playDialogueCancellationToken = playDialogueCancellationTokenSource.Token;
+                PlayCurrentDialogue(playDialogueCancellationToken).DoNotAwait();
             }
         }
 
-        private async Task PlayCurrentDialogue()
+        private async Task PlayCurrentDialogue(CancellationToken cancellationToken)
         {
+            if (clearScreenCancellationToken.CanBeCanceled)
+            {
+                clearScreenCancellationTokenSource.Cancel();
+                clearScreenCancellationTokenSource.Dispose();
+            }
             if (currentDialogue.overrideCurrentText)
             {
                 dialogTextBuilder.Clear();
@@ -73,7 +93,11 @@ namespace VoiceOver
 
             if (currentDialogue.startWritingDelay > 0)
             {
-                await Task.Delay((int)currentDialogue.startWritingDelay * 1000);
+                await Task.Delay((int)currentDialogue.startWritingDelay * 1000, cancellationToken);
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return;
+                }
             }
 
 
@@ -83,8 +107,11 @@ namespace VoiceOver
             {
                 dialogTextBuilder.Append(currentDialogue.text[i]);
                 dialogText = dialogTextBuilder.ToString();
-                Debug.Log(dialogText);
-                await Task.Delay(delay);
+                await Task.Delay(delay, cancellationToken);
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return;
+                }
             }
 
             if (!string.IsNullOrEmpty(currentDialogue.endEscapeSequence))
@@ -95,18 +122,33 @@ namespace VoiceOver
 
             if (currentDialogue.onScreenTime > 0)
             {
-                await Task.Delay(Mathf.RoundToInt(currentDialogue.onScreenTime * 1000));
+                await Task.Delay(Mathf.RoundToInt(currentDialogue.onScreenTime * 1000), cancellationToken);
             }
 
             currentDialogue = currentAsset.script.NextDialogue();
             if (currentDialogue != null)
             {
-                PlayCurrentDialogue().DoNotAwait();
+                playDialogueCancellationTokenSource = new CancellationTokenSource();
+                playDialogueCancellationToken = playDialogueCancellationTokenSource.Token;
+                PlayCurrentDialogue(playDialogueCancellationToken).DoNotAwait();
             }
             else
             {
                 currentAsset = null;
+                if (voiceOverQueue.Count == 0)
+                {
+                    clearScreenCancellationTokenSource = new CancellationTokenSource();
+                    clearScreenCancellationToken = clearScreenCancellationTokenSource.Token;
+                    ClearDialogText().DoNotAwait();
+                }
             }
+        }
+
+        private async Task ClearDialogText()
+        {
+            await Task.Delay(1000, clearScreenCancellationToken);
+            dialogTextBuilder.Clear();
+            dialogText = dialogTextBuilder.ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FMOD.Studio;
 
 namespace VoiceOver
 {
@@ -12,6 +13,8 @@ namespace VoiceOver
         public bool Started { get; private set; }
         public bool Completed { get; private set; }
         public int CurrentDialogueIndex { get; private set; }
+
+        private EventInstance audioEventInstance;
         public VoiceOverDialogue StartDialogue()
         {
             if (Started)
@@ -20,8 +23,8 @@ namespace VoiceOver
             }
             
             Started = true;
-            var audioEvent = FMODUnity.RuntimeManager.CreateInstance(eventReference);
-            audioEvent.start();
+            audioEventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
+            audioEventInstance.start();
             
             CurrentDialogueIndex = 0;
             return dialogues[CurrentDialogueIndex];
@@ -39,6 +42,14 @@ namespace VoiceOver
             Started = false;
             Completed = false;
             CurrentDialogueIndex = 0;
+        }
+
+        public void StopAudio()
+        {
+            if (audioEventInstance.isValid())
+            {
+                audioEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
         }
     }
 }
