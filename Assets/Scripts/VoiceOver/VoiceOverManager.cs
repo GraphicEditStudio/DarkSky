@@ -27,8 +27,11 @@ namespace VoiceOver
         {
             voiceOverQueue = new Queue<VoiceOverAsset>();
             dialogTextBuilder = new StringBuilder();
-            
+            UISetup();
+        }
 
+        private void UISetup()
+        {
             uiDocument = GetComponentInChildren<UIDocument>();
             dialogLabel = uiDocument.rootVisualElement.Q("dialogue") as Label;
             if (dialogLabel != null)
