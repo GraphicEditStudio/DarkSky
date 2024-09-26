@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
-    //public GameObject m_deadScreen;
+    public GameObject _deadScreen;
     [Tooltip("Current Health")]
     public float _currentHealth;
     [Tooltip("Maximum Health")]
@@ -40,7 +40,13 @@ public class Health : MonoBehaviour
             //Debug.Log("Was hit");
         }
 
-        //if (_currentHealth <= 0) m_deadScreen.SetActive(true);
+        if (_currentHealth <= 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            _deadScreen.SetActive(true);
+        }
 
     }
 
