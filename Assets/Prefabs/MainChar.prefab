@@ -382,10 +382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22d2f84844bacd4c9110cc455aeff23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_deadScreen: {fileID: 0}
+  _deadScreen: {fileID: 0}
   _currentHealth: 100
   _maxHealth: 100
   _healthBar: {fileID: 0}
+  _damageFX: {fileID: 0}
 --- !u!114 &1776857863121444692
 MonoBehaviour:
   m_ObjectHideFlags: 0
