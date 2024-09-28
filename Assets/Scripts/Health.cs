@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
     public float _maxHealth;
     public Image _healthBar;
     private Slider slider;
+    [Header("Damage Flash")]
+    public Image _damageFX;
+
+
 
     public void SetMaxHealth(int health)
     {
@@ -34,8 +38,9 @@ public class Health : MonoBehaviour
         //Check to see if the tag on the collider is equal to Enemy
         if (other.gameObject.tag == "Enemy")
         {
-            _currentHealth -= 25f;
+            _currentHealth -= 5f;
             _healthBar.fillAmount = _currentHealth / _maxHealth;
+            ShowDamage();
 
             //Debug.Log("Was hit");
         }
@@ -45,9 +50,29 @@ public class Health : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            _deadScreen.SetActive(true);
+            _deadScreen.SetActive(true);// call dead screen
         }
 
     }
+
+    void Update()
+    {
+        if (_damageFX.color.a != 0)
+        {
+            _damageFX.color = new Color(255f, 0f, 0f, Mathf.MoveTowards(_damageFX.color.a, 0f, 2f * Time.deltaTime));
+
+        }
+    }
+
+
+    public void ShowDamage()
+    {
+
+        _damageFX.color = new Color(255f, 0f, 0f, 0.5f);
+
+
+    }
+
+
 
 }
