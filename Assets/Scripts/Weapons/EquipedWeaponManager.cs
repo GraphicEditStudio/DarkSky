@@ -6,9 +6,7 @@ namespace Weapons
     {
         private int _equippedSlot = 0;
         private readonly WeaponSettings[] _weaponSlots;
-        
-        // Todo: Add listeners;
-        
+
         public EquippedWeaponManager(int numSlots)
         {
             _weaponSlots = new WeaponSettings[numSlots];
