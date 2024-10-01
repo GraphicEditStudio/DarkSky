@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073423d1ce7049b09759eec6c7aad9b2, type: 3}
+  m_Name: Weapon 1
+  m_EditorClassIdentifier: 
+  Model: {fileID: 469761429575507851, guid: 6db4c5567368bac4aa9cdb0d63b4e48b, type: 3}
+  PositionOffset: {x: 0.29, y: -0.2, z: 0.573}
+  RotationOffset: {x: 0, y: -3.44, z: 0}
+  HandType: 0
+  IsMelee: 1
