@@ -1,0 +1,28 @@
+name: Add issues to project columns based on issue events
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issues to project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add new issues to project column 'Todo'
+        uses: actions/add-to-project@v0.5.0
+        if: github.event.action == 'opened'
+        with:
+          project-url: https://github.com/orgs/GraphicEditStudio/projects/@DarkSky
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          column-name: Todo
+
+      - name: Move assigned issues to 'In Progress' column in project
+        uses: actions/add-to-project@v0.5.0
+        if: github.event.action == 'assigned'
+        with:
+          project-url: https://github.com/orgs/GraphicEditStudio/projects/@DarkSky
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          column-name: Done
+
