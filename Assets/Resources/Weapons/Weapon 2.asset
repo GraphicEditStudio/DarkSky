@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
   Model: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
-  PositionOffset: {x: 0.12, y: -0.15, z: 0.612}
-  RotationOffset: {x: 0, y: -4.6, z: 0}
+  PositionOffset: {x: 0.24, y: -0.15, z: 0.612}
+  RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 0
   IsMelee: 0
