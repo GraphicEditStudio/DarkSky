@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9005220659476430818}
   - component: {fileID: 9005220659476430821}
-  - component: {fileID: 9005220659476430820}
-  - component: {fileID: 9018249871969862650}
+  - component: {fileID: 480659850532178429}
   m_Layer: 0
-  m_Name: MainCamera
+  m_Name: Gun Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +42,7 @@ Camera:
   m_GameObject: {fileID: 9005220659476430823}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.972549, g: 0.95686275, b: 0.92941177, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -70,10 +69,10 @@ Camera:
   field of view: 40
   orthographic: 0
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 64
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -85,15 +84,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &9005220659476430820
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9005220659476430823}
-  m_Enabled: 1
---- !u!114 &9018249871969862650
+--- !u!114 &480659850532178429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
