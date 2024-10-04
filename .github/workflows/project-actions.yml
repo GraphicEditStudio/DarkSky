@@ -12,4 +12,4 @@ jobs:
         with:
           project: DarkSkyCards
           column: ToDo
-          repo-token: ${{ test }}
+          repo-token: ${{ TEST }}
