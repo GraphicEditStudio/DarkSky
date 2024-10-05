@@ -47,10 +47,11 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
+            _deadScreen.SetActive(true);// call dead screen
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            //Time.timeScale = 0;
 
-            _deadScreen.SetActive(true);// call dead screen
         }
 
     }
