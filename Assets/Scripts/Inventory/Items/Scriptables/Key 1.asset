@@ -15,6 +15,6 @@ MonoBehaviour:
   id: d4ffaeae-d74f-469e-bb2b-d1a1e8a899b4
   itemType: 2
   sprite: {fileID: 21300000, guid: 5af01e2190bab9a4dacca6d393c0d036, type: 3}
-  itemName: Key-A
-  description: A Key-A
+  itemName: Key-B
+  description: A Key-B
   isStackable: 0

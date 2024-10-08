@@ -35,11 +35,11 @@ namespace Inventory
             PlayerItems.OnItemRemoved += view.ItemRemoved;
             PlayerItems.OnListCleared += view.ItemListCleared;
             
-            //testing only
-            foreach (var data in itemsData)
-            {
-                PlayerItems.Add(new Item(data));
-            }
+            // //testing only
+            // foreach (var data in itemsData)
+            // {
+            //     PlayerItems.Add(new Item(data));
+            // }
         }
 
         private void OnDestroy()
@@ -80,5 +80,13 @@ namespace Inventory
         }
         
         #endregion Item Details
+        
+        #region Item Behavior
+
+        public void ItemCollected(ItemScriptable itemScriptable)
+        {
+            PlayerItems.Add(new Item(itemScriptable));
+        }
+        #endregion Item Behavior
     }
 }
