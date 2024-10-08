@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Audio;
+
 
 public class PauseManager : MonoBehaviour
 {
