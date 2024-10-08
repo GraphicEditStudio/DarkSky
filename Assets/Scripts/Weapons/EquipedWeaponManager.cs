@@ -24,10 +24,10 @@ namespace Weapons
         public WeaponSettings GetCurrentGun()
         {
             var slot = _equippedSlot;
-            return GetGunAtSlot(slot);
+            return GetWeaponAtSlot(slot);
         }
 
-        private WeaponSettings GetGunAtSlot(int slot)
+        private WeaponSettings GetWeaponAtSlot(int slot)
         {
             try
             {
@@ -42,7 +42,18 @@ namespace Weapons
         public WeaponSettings SwapToSlot(int slot)
         {
             _equippedSlot = slot;
-            return GetGunAtSlot(slot);
+            DisableAllWeaponModels();
+            var weaponSettings = GetWeaponAtSlot(slot);
+            weaponSettings.EnableModel();
+            return weaponSettings;
+        }
+
+        private void DisableAllWeaponModels()
+        {
+            foreach (var weapon in _weaponSlots)
+            {
+                weapon.DisableModel();
+            }
         }
 
         public WeaponSettings[] GetSlots()
