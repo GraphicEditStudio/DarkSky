@@ -32,8 +32,8 @@ namespace VoiceOver
 
         private void UISetup()
         {
-            uiDocument = GetComponentInChildren<UIDocument>();
-            dialogLabel = uiDocument.rootVisualElement.Q("dialogue") as Label;
+            uiDocument = GetComponentInChildren<UIDocument>(includeInactive: true);
+            dialogLabel = uiDocument.rootVisualElement?.Q("dialogue") as Label;
             if (dialogLabel != null)
             {
                 dialogLabel.SetBinding(nameof(TextField.value),

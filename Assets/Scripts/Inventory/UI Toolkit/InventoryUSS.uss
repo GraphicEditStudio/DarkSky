@@ -1,0 +1,67 @@
+.container {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.inventory {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.inventory-frame {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.header{
+    width: 100%;
+    height: 95px;
+    max-height: 155px;
+    background-color: rgb(50,50,50);
+    align-content: center;
+    justify-content: center;
+    font-size: 48px;
+    padding: 15px;
+    -unity-font-style: bold;
+}
+
+.header-label {
+    color: white;
+}
+
+.slots-container {
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 35px;
+}
+
+.slots-frame {
+    height: 100%;
+    width: 45%;
+    margin-right: 10px;
+    background-color: bisque;
+    padding: 40px 15px;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item-slot{
+    height: 120px;
+    width: 120px;
+    align-items: center;
+    flex: auto;
+}
+
+.slot-details {
+    height: 100%;
+    width: 100%;
+    background-color: blueviolet;
+}
