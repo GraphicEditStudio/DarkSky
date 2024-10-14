@@ -1,30 +1,49 @@
 using UnityEngine;
+using Platinio.TweenEngine;
+
 
 public class Door : MonoBehaviour
 {
-    public Animator animator;
+    //bool _isDoorOpen = false;
+    Vector3 _doorClosedPos;
+    Vector3 _doorOpenPos;
+    public GameObject door;
 
-    void Start()
+    private void Awake()
     {
-        animator.SetTrigger("isClosed");
+        _doorClosedPos = door.transform.position;
+        _doorOpenPos = new Vector3(door.transform.position.x, 5f, door.transform.position.z);
     }
 
-    //private void OnTriggerEnter(Collider other)
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        //if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
-            animator.SetTrigger("isOpen");
+
+            OpeningDoor();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            animator.SetTrigger("isClosed");
+            CloseingDoor();
         }
     }
 
+
+
+    void OpeningDoor()
+    {
+        door.transform.Move(_doorOpenPos, 2.0f);
+    }
+
+
+    void CloseingDoor()
+    {
+        door.transform.Move(_doorClosedPos, 2.0f);
+    }
+
 }
-
-

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 372d0bc26d95ba841acfda921437fc19
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 152863
+  packageName: PlatinioTween - UI Animation Framework
+  packageVersion: 1.52
+  assetPath: Assets/PlatinioTween/Examples/Scenes/CatchGame.unity
+  uploadId: 365507

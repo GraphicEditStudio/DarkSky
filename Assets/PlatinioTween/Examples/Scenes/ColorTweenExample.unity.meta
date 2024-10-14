@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c81ef324eba69e343b5e6c00551e9439
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 152863
+  packageName: PlatinioTween - UI Animation Framework
+  packageVersion: 1.52
+  assetPath: Assets/PlatinioTween/Examples/Scenes/ColorTweenExample.unity
+  uploadId: 365507
