@@ -411,11 +411,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8273158624473171810, guid: d7fa07537a4ca0942a4624fb7e58f105, type: 3}
   m_PrefabInstance: {fileID: 1322938913}
   m_PrefabAsset: {fileID: 0}
---- !u!108 &705507994 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 1754807931410951827, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
-  m_PrefabInstance: {fileID: 1159736972}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &741894974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6177971802089729118, guid: d7fa07537a4ca0942a4624fb7e58f105, type: 3}
@@ -578,6 +573,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 953188781}
     - target: {fileID: 2371256656345379760, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: doorUI
+      value: 
+      objectReference: {fileID: 953188781}
+    - target: {fileID: 4600850211849139261, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
