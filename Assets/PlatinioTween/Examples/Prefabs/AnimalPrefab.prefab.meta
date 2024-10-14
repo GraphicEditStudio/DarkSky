@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 133dba6be00f2884d956d96e0ba23c14
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 152863
+  packageName: PlatinioTween - UI Animation Framework
+  packageVersion: 1.52
+  assetPath: Assets/PlatinioTween/Examples/Prefabs/AnimalPrefab.prefab
+  uploadId: 365507

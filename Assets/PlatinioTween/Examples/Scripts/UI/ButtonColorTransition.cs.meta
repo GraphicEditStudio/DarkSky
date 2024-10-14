@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fb93cddbc1dafd649b532c098209b3c5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 152863
+  packageName: PlatinioTween - UI Animation Framework
+  packageVersion: 1.52
+  assetPath: Assets/PlatinioTween/Examples/Scripts/UI/ButtonColorTransition.cs
+  uploadId: 365507

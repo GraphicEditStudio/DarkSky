@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2f09697e724bd0c47991c273d2fe99c9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 152863
+  packageName: PlatinioTween - UI Animation Framework
+  packageVersion: 1.52
+  assetPath: Assets/PlatinioTween/Examples/Scenes/AdvancedUIExample.unity
+  uploadId: 365507
