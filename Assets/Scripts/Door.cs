@@ -24,11 +24,12 @@ public class Door : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
-        //if (other.CompareTag("Player"))
+        //if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player") && Input.GetKey("e"))
         {
             OpeningDoor();
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -45,7 +46,7 @@ public class Door : MonoBehaviour
     void OpeningDoor()
     {
         door.transform.Move(_doorOpenPos, 2.0f);
-}
+    }
 
 
     void CloseingDoor()
