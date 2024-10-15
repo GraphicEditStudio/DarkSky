@@ -12,8 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073423d1ce7049b09759eec6c7aad9b2, type: 3}
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
-  Model: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
+  ModelPrefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
   PositionOffset: {x: 0.24, y: -0.15, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 0
   IsMelee: 0
+  AutoFire: 0
+  HitMask:
+    serializedVersion: 2
+    m_Bits: 1
+  Spread: {x: 0, y: 0, z: 0}
+  FireRate: 0.25
+  Material: {fileID: 2100000, guid: f371b2f928df3084b87808afc7762160, type: 2}
+  WidthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0073509244
+      value: 0.98101264
+      inSlope: 0.09085384
+      outSlope: 0.09085384
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.25534123
+    - serializedVersion: 3
+      time: 0.98529816
+      value: -0.012915492
+      inSlope: -1.574748
+      outSlope: -1.574748
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08871978
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Duration: 0.05
+  MinVertexDistance: 0.1
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.8962264, g: 0.097232126, b: 0.097232126, a: 1}
+    key1: {r: 0.10196079, g: 0.10196079, b: 0.10196079, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  MissDistance: 50
+  SimulationSpeed: 50

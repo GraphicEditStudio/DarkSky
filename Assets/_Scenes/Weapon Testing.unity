@@ -1200,6 +1200,10 @@ PrefabInstance:
       propertyPath: input
       value: 
       objectReference: {fileID: 499950782}
+    - target: {fileID: 8227869670493861440, guid: dcf6b663d21fd944b8ffd935a5e5d713, type: 3}
+      propertyPath: defaultImpact
+      value: 
+      objectReference: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
