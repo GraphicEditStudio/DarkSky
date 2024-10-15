@@ -17,11 +17,14 @@ MonoBehaviour:
   RotationOffset: {x: 0, y: -3.44, z: 0}
   HandType: 0
   IsMelee: 1
+  AutoFire: 0
   HitMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   Spread: {x: 0.1, y: 0.1, z: 0.1}
   FireRate: 0.25
+  BulletsPerFire: 1
+  SpeadNumber: 0
   Material: {fileID: 0}
   WidthCurve:
     serializedVersion: 2

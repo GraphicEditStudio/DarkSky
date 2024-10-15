@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Serialization;
@@ -16,11 +18,14 @@ namespace Weapons
         [Header("Types")]
         public WeaponHandType HandType;
         public bool IsMelee;
+        public bool AutoFire;
 
         [Header("Shoot Configuration")]
-        public LayerMask HitMask;
-        public Vector3 Spread = new (0.1f, 0.1f, 0.1f);
-        public float FireRate = 0.25f;
+         public LayerMask HitMask;
+         public Vector3 Spread = new (0.1f, 0.1f, 0.1f);
+         public float FireRate = 0.25f;
+         public int BulletsPerFire = 1;
+         public float SpeadNumber;
 
         [Header("Trail Config")] 
         public Material Material;
@@ -42,8 +47,7 @@ namespace Weapons
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
             LastShootTime = 0;
             TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
-            Model = Instantiate(ModelPrefab);
-            Model.transform.SetParent(Parent);
+            Model = Instantiate(ModelPrefab, Parent);
             Model.transform.localPosition = PositionOffset;
             Model.transform.localRotation = Quaternion.Euler(RotationOffset);
 
@@ -52,61 +56,99 @@ namespace Weapons
 
         public void EnableModel()
         {
+            if (ShootSystem)
+            {
+                ShootSystem.Stop(true);
+            }
             Model.SetActive(true);
         }
 
         public void DisableModel()
         {
+            if (ShootSystem)
+            {
+                ShootSystem.Stop(true);
+            }
             Model.SetActive(false);
         }
 
-        public void Shoot()
+        public IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> Shoot()
         {
             if (Time.time > FireRate + LastShootTime)
             {
                 LastShootTime = Time.time;
-                ShootSystem.Play();
-                var shootDirection = ShootSystem.transform.forward;
-                shootDirection += new Vector3(
-                    Random.Range(
-                        -Spread.x,
-                        Spread.x
-                    ),
-                    Random.Range(
-                        -Spread.y,
-                        Spread.y
-                    ),
-                    Random.Range(
-                        -Spread.y,
-                        Spread.y
-                    )
-                );
-                shootDirection.Normalize();
-
-                var hitPoint = ShootSystem.transform.position + (shootDirection * MissDistance);
-                var castHit = new RaycastHit();
-                if (Physics.Raycast(
-                        ShootSystem.transform.forward,
-                        shootDirection,
-                        out RaycastHit hit,
-                        float.MaxValue,
-                        HitMask
-                    )
-                   )
+                if (!IsMelee)
                 {
-                    hitPoint = hit.point;
-                    castHit = hit;
+                    return ShootSpread();
                 }
-                ActiveMonoBehaviour.StartCoroutine(
-                    PlayTrail(
-                        ShootSystem.transform.position,
-                        hitPoint,
-                        castHit
-                    )
-                );
+                else
+                {
+                    Debug.Log("Melee Attacks");
+                }
             }
+
+            return new List<(RaycastHit? CastHit, Vector3 HitPoint)>();
         }
 
+        private IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> ShootSpread()
+        {
+            if (ShootSystem)
+            {
+                // MuzzleFlash
+                ShootSystem.Play(true);
+            }
+            var screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            var point = Camera.main.ScreenToWorldPoint(screenPoint);
+            var forward = Camera.main.transform.forward;
+            return Enumerable.Range(1, BulletsPerFire).Select(b => ShootBullet(point, forward));
+        }
+
+        private (RaycastHit?, Vector3) ShootBullet(Vector3 shootingPoint, Vector3 direction)
+        {
+            var shootDirection = direction;
+            shootDirection += new Vector3(
+                Random.Range(
+                    -Spread.x,
+                    Spread.x
+                ),
+                Random.Range(
+                    -Spread.y,
+                    Spread.y
+                ),
+                Random.Range(
+                    -Spread.y,
+                    Spread.y
+                )
+            );
+            shootDirection.Normalize();
+            var hitPoint = direction + (shootDirection * MissDistance);
+            RaycastHit? castHit = null;
+            if (Physics.Raycast(
+                    shootingPoint,
+                    shootDirection,
+                    out RaycastHit hit,
+                    float.MaxValue,
+                    HitMask
+                )
+               )
+            {
+                hitPoint = hit.point;
+                castHit = hit;
+            }
+            
+            //Debug.DrawRay(shootingPoint, hitPoint, UnityEngine.Color.red, 20);
+            // ActiveMonoBehaviour.StartCoroutine(
+            //     PlayTrail(
+            //         shootingPoint, //ShootSystem.transform.position,
+            //         hitPoint,
+            //         castHit ?? new RaycastHit()
+            //     )
+            // );
+            
+            return (castHit, hitPoint);
+        }
+
+        // failed code for trail... might revisit later
         private IEnumerator PlayTrail(Vector3 StartPoint, Vector3 EndPoint, RaycastHit Hit)
         {
             var instance = TrailPool.Get();
@@ -126,9 +168,9 @@ namespace Weapons
                 remainingDistance -= SimulationSpeed * Time.deltaTime;
                 yield return null;
             }
-
+        
             instance.transform.position = EndPoint;
-
+        
             if (Hit.collider != null)
             {
                 //HandleImpact(Hit.transform.gameObject, EndPoint, Hit.normal, ImpactType, 0);
@@ -141,7 +183,7 @@ namespace Weapons
             instance.gameObject.SetActive(false);
             TrailPool.Release(instance);
         }
-
+        
         private TrailRenderer CreateTrail()
         {
             var instance = new GameObject("Bullet Trail");
@@ -153,7 +195,7 @@ namespace Weapons
             trail.minVertexDistance = MinVertexDistance;
             trail.emitting = false;
             trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-
+        
             return trail;
         }
     }
