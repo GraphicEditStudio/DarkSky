@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon 3
   m_EditorClassIdentifier: 
   ModelPrefab: {fileID: 8015207811728964754, guid: 9de0e747c2277134c8396696db9bfd37, type: 3}
-  PositionOffset: {x: 0.24, y: -0.15, z: 0.612}
+  PositionOffset: {x: 0.4, y: -0.25, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 1
   IsMelee: 0

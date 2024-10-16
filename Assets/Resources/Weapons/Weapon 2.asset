@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
   ModelPrefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
-  PositionOffset: {x: 0.24, y: -0.15, z: 0.612}
+  PositionOffset: {x: 0.4, y: -0.25, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 0
   IsMelee: 0
@@ -23,6 +23,8 @@ MonoBehaviour:
     m_Bits: 1
   Spread: {x: 0, y: 0, z: 0}
   FireRate: 0.25
+  BulletsPerFire: 1
+  SpeadNumber: 0
   Material: {fileID: 2100000, guid: f371b2f928df3084b87808afc7762160, type: 2}
   WidthCurve:
     serializedVersion: 2
