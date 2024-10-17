@@ -18,6 +18,7 @@ MonoBehaviour:
   HandType: 1
   IsMelee: 0
   AutoFire: 1
+  Damage: 5
   HitMask:
     serializedVersion: 2
     m_Bits: 1

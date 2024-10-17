@@ -10,6 +10,8 @@ namespace Weapons
     [CreateAssetMenu(menuName = "DarkSky/Weapon Settings")]
     public class WeaponSettings : ScriptableObject
     {
+        
+
         [Header("Visuals")]
         public GameObject ModelPrefab;
         public Vector3 PositionOffset;
@@ -19,6 +21,9 @@ namespace Weapons
         public WeaponHandType HandType;
         public bool IsMelee;
         public bool AutoFire;
+        
+        [Header("Damage")]
+        public float Damage;
 
         [Header("Shoot Configuration")]
          public LayerMask HitMask;
@@ -128,7 +133,8 @@ namespace Weapons
                     shootDirection,
                     out RaycastHit hit,
                     float.MaxValue,
-                    HitMask
+                    HitMask, 
+                    QueryTriggerInteraction.Ignore
                 )
                )
             {
