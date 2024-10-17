@@ -43,12 +43,11 @@ namespace Weapons
                 var currentGun = weaponManager.GetCurrentGun();
                 if (currentGun)
                 {
-                    IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot();
+                    IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot().ToArray();
                     if (!currentGun.AutoFire)
                     {
                         isFiring = false;
                     }
-
                     if (hits.Any())
                     {
                         foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
@@ -56,16 +55,20 @@ namespace Weapons
                             if (hit.CastHit.HasValue)
                             {
                                 var castHit = hit.CastHit.Value;
-                                //Debug.Log($"Hit {castHit.transform.gameObject.name}");
-                                var instance = Instantiate(defaultImpact);
-                                instance.transform.position = hit.HitPoint;
-                                instance.transform.forward = castHit.normal;
+
+                                var effects = defaultImpact;
+                                var hitbox = castHit.transform.GetComponent<Hitbox>();
+                                if (hitbox)
+                                {
+                                    hitbox.OnHit(currentGun.Damage, castHit);
+                                }
+                                else
+                                {
+                                    var instance = Instantiate(effects);
+                                    instance.transform.position = hit.HitPoint;
+                                    instance.transform.forward = castHit.normal;    
+                                }
                             }
-                            else
-                            {
-                                
-                            }
-                            
                         }
                     }
                 }

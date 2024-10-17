@@ -18,11 +18,14 @@ MonoBehaviour:
   HandType: 0
   IsMelee: 0
   AutoFire: 0
+  Damage: 20
   HitMask:
     serializedVersion: 2
     m_Bits: 1
   Spread: {x: 0, y: 0, z: 0}
   FireRate: 0.25
+  BulletsPerFire: 1
+  SpeadNumber: 0
   Material: {fileID: 2100000, guid: f371b2f928df3084b87808afc7762160, type: 2}
   WidthCurve:
     serializedVersion: 2
