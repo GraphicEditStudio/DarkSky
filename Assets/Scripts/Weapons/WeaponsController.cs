@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Inventory;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,51 +23,51 @@ namespace Weapons
         {
             weaponSettings = Resources.LoadAll<WeaponSettings>("Weapons");
             this.weaponManager = new EquippedWeaponManager(weaponSettings.Length);
+            
             for (var i = 0; i < weaponSettings.Length; i++)
             {
                 var weapon = weaponSettings[i];
                 weapon.Spawn(transform, this);
-                this.weaponManager.AddGun(i, weapon);
+                weapon.DisableModel();
+                //this.weaponManager.AddGun(i, weapon);
                 var slotIndex = i;
-                input.actions[$"Weapon {slotIndex + 1}"].performed += (ctx) => EquipWeapon(slotIndex);
+                input.actions[$"Weapon {slotIndex+1}"].performed += (ctx) => EquipWeapon(slotIndex);
             }
-            EquipWeapon(0);
+            //EquipWeapon(0);
             isFiring = false;
             input.actions["Shoot"].performed += (ctx) => IsFiring(true);
             input.actions["Shoot"].canceled += (ctx) => IsFiring(false);
         }
-
         private void Update()
         {
             if (isFiring)
             {
                 var currentGun = weaponManager.GetCurrentGun();
-                if (currentGun)
+                if (!currentGun) return;
+                
+                IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot();
+                if (!currentGun.AutoFire)
                 {
-                    IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot();
-                    if (!currentGun.AutoFire)
-                    {
-                        isFiring = false;
-                    }
+                    isFiring = false;
+                }
 
-                    if (hits.Any())
+                if (hits.Any())
+                {
+                    foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
                     {
-                        foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
+                        if (hit.CastHit.HasValue)
                         {
-                            if (hit.CastHit.HasValue)
-                            {
-                                var castHit = hit.CastHit.Value;
-                                //Debug.Log($"Hit {castHit.transform.gameObject.name}");
-                                var instance = Instantiate(defaultImpact);
-                                instance.transform.position = hit.HitPoint;
-                                instance.transform.forward = castHit.normal;
-                            }
-                            else
-                            {
-                                
-                            }
-                            
+                            var castHit = hit.CastHit.Value;
+                            //Debug.Log($"Hit {castHit.transform.gameObject.name}");
+                            var instance = Instantiate(defaultImpact);
+                            instance.transform.position = hit.HitPoint;
+                            instance.transform.forward = castHit.normal;
                         }
+                        else
+                        {
+                                
+                        }
+                            
                     }
                 }
             }
@@ -79,7 +80,6 @@ namespace Weapons
 
         private void EquipWeapon(int slot)
         {
-
             weaponManager.SwapToSlot(slot);
         }
     }

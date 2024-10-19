@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073423d1ce7049b09759eec6c7aad9b2, type: 3}
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
-  ModelPrefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
+  id: db6d09ac-e93b-443a-8d2b-e69bf32e7f6c
+  itemType: 3
+  sprite: {fileID: 21300000, guid: 7b3ea26c7512e72458116bfb21a1fbc0, type: 3}
+  prefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
+  itemName: Pistol
+  description: 
+  isStackable: 0
   PositionOffset: {x: 0.4, y: -0.25, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 0

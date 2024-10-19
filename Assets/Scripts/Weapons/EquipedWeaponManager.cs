@@ -1,10 +1,14 @@
+using Inventory;
+using Inventory.Items;
+using Items;
 using JetBrains.Annotations;
 
 namespace Weapons
 {
     public class EquippedWeaponManager
     {
-        private int _equippedSlot = 0;
+        private int _equippedSlot = -1;
+        private int weaponSlotsMaxIndex = 0;
         private readonly WeaponSettings[] _weaponSlots;
 
         public EquippedWeaponManager(int numSlots)
@@ -14,11 +18,25 @@ namespace Weapons
             {
                 _weaponSlots[i] = null;
             }
+            InventoryManager.Instance.OnItemCollected += OnWeaponCollected;
+        }
+
+        ~EquippedWeaponManager()
+        {
+            if (InventoryManager.Instance != null)
+            {
+                InventoryManager.Instance.OnItemCollected -= OnWeaponCollected;
+            }
         }
         
         public void AddGun(int slot, [CanBeNull] WeaponSettings gun)
         {
             _weaponSlots[slot] = gun;
+        }
+
+        public void AddGun([CanBeNull] WeaponSettings gun)
+        {
+            _weaponSlots[weaponSlotsMaxIndex++] = gun;
         }
 
         public WeaponSettings GetCurrentGun()
@@ -41,9 +59,13 @@ namespace Weapons
 
         public WeaponSettings SwapToSlot(int slot)
         {
+            
             _equippedSlot = slot;
             DisableAllWeaponModels();
             var weaponSettings = GetWeaponAtSlot(slot);
+            if (weaponSettings == null)
+                return null;
+            
             weaponSettings.EnableModel();
             return weaponSettings;
         }
@@ -52,6 +74,7 @@ namespace Weapons
         {
             foreach (var weapon in _weaponSlots)
             {
+                if (weapon == null) continue;
                 weapon.DisableModel();
             }
         }
@@ -64,6 +87,18 @@ namespace Weapons
         public int GetEquippedSlot()
         {
             return _equippedSlot;
+        }
+
+        public void OnWeaponCollected(EItemType type, ItemScriptable data)
+        {
+            if (type != EItemType.Weapon)
+                return;
+
+            var weaponData = data as WeaponSettings;
+            if (weaponData != null)
+            {
+                AddGun(weaponData);
+            }
         }
     }
 }
