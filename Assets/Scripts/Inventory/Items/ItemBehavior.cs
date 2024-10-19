@@ -8,6 +8,7 @@ namespace Inventory.Items
     public class ItemBehavior : MonoBehaviour
     {
         [SerializeField] private ItemScriptable itemScriptable;
+        [SerializeField] private GameObject meshContainer;
         [SerializeField] private GameObject labelCanvas;
         [SerializeField] private bool showLabelOnFocus = true;
         [SerializeField] private TextMeshProUGUI label;
@@ -44,7 +45,7 @@ namespace Inventory.Items
             if (itemScriptable == null || itemScriptable == currentItem)
                 return;
 
-            var childs = transform.GetComponentsInChildren<Transform>();
+            var childs = meshContainer.transform.GetComponentsInChildren<Transform>();
             var item = childs.FirstOrDefault(c => c.gameObject.name == currentItem.Name);
 
             if (item != null)
@@ -63,7 +64,7 @@ namespace Inventory.Items
                
             }
             
-            var newItem = Instantiate(itemScriptable.Prefab, this.transform);
+            var newItem = Instantiate(itemScriptable.Prefab, meshContainer.transform);
             newItem.name = itemScriptable.Name;
 
             foreach (var t in newItem.GetComponentsInChildren<Transform>())
