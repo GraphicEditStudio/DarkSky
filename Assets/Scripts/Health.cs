@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 
 public class Health : MonoBehaviour
 {
     [Header("Health")]
     public GameObject _deadScreen;
-    [Tooltip("Current Health")]
-    public float _currentHealth;
     [Tooltip("Maximum Health")]
     public float _maxHealth;
     public Image _healthBar;
@@ -15,11 +14,28 @@ public class Health : MonoBehaviour
     [Header("Damage Flash")]
     public Image _damageFX;
 
+    private HealthManager healthManager;
+    
+    void Awake()
+    {
+        this.healthManager = new HealthManager();
+        healthManager.Initialize(_maxHealth);
+        this.healthManager.HealthUpdated += OnHealthUpdate;
+    }
+
+    private void OnHealthUpdate(float startHealth, float previousHealth, float newHealth)
+    {
+        if (newHealth < previousHealth)
+        {
+            _healthBar.fillAmount = healthManager.GetHealthPercentage();
+            ShowDamage();
+        }
+    }
 
 
     public void SetMaxHealth(int health)
     {
-
+        healthManager.Initialize(health);
         slider.maxValue = health;
         slider.value = health;
 
@@ -27,7 +43,7 @@ public class Health : MonoBehaviour
 
     public void SetHealth(int health)
     {
-
+        healthManager.ManuallySetHealth(health);
         slider.value = health;
 
     }
@@ -36,16 +52,14 @@ public class Health : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Check to see if the tag on the collider is equal to Enemy
+        var isAlive = true;
         if (other.gameObject.tag == "Enemy")
         {
-            _currentHealth -= 5f;
-            _healthBar.fillAmount = _currentHealth / _maxHealth;
-            ShowDamage();
-
+            isAlive = healthManager.TakeDamage(5f);
             //Debug.Log("Was hit");
         }
 
-        if (_currentHealth <= 0)
+        if (!isAlive)
         {
             _deadScreen.SetActive(true);// call dead screen
             Cursor.lockState = CursorLockMode.None;

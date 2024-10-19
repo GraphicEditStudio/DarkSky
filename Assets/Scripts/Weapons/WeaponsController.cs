@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Inventory;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,29 +27,27 @@ namespace Weapons
             {
                 var weapon = weaponSettings[i];
                 weapon.Spawn(transform, this);
-                weapon.DisableModel();
-                //this.weaponManager.AddGun(i, weapon);
+                this.weaponManager.AddGun(i, weapon);
                 var slotIndex = i;
-                input.actions[$"Weapon {slotIndex+1}"].performed += (ctx) => EquipWeapon(slotIndex);
+                input.actions[$"Weapon {slotIndex + 1}"].performed += (ctx) => EquipWeapon(slotIndex);
             }
-            //EquipWeapon(0);
+            EquipWeapon(0);
             isFiring = false;
             input.actions["Shoot"].performed += (ctx) => IsFiring(true);
             input.actions["Shoot"].canceled += (ctx) => IsFiring(false);
         }
+
         private void Update()
         {
             if (isFiring)
             {
                 var currentGun = weaponManager.GetCurrentGun();
                 if (!currentGun) return;
-                
-                IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot();
+                IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot().ToArray();
                 if (!currentGun.AutoFire)
                 {
                     isFiring = false;
                 }
-
                 if (hits.Any())
                 {
                     foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
@@ -58,16 +55,20 @@ namespace Weapons
                         if (hit.CastHit.HasValue)
                         {
                             var castHit = hit.CastHit.Value;
-                            //Debug.Log($"Hit {castHit.transform.gameObject.name}");
-                            var instance = Instantiate(defaultImpact);
-                            instance.transform.position = hit.HitPoint;
-                            instance.transform.forward = castHit.normal;
+
+                            var effects = defaultImpact;
+                            var hitbox = castHit.transform.GetComponent<Hitbox>();
+                            if (hitbox)
+                            {
+                                hitbox.OnHit(currentGun.Damage, castHit);
+                            }
+                            else
+                            {
+                                var instance = Instantiate(effects);
+                                instance.transform.position = hit.HitPoint;
+                                instance.transform.forward = castHit.normal;    
+                            }
                         }
-                        else
-                        {
-                                
-                        }
-                            
                     }
                 }
             }
@@ -80,6 +81,7 @@ namespace Weapons
 
         private void EquipWeapon(int slot)
         {
+
             weaponManager.SwapToSlot(slot);
         }
     }
