@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073423d1ce7049b09759eec6c7aad9b2, type: 3}
   m_Name: Weapon 1
   m_EditorClassIdentifier: 
-  ModelPrefab: {fileID: 469761429575507851, guid: 6db4c5567368bac4aa9cdb0d63b4e48b, type: 3}
+  id: c68b05cf-efaa-43cd-9cd8-7ad7433a9f27
+  itemType: 3
+  sprite: {fileID: 21300000, guid: 2e045f0aec8209d4b8d552c70a1ff53a, type: 3}
+  prefab: {fileID: 469761429575507851, guid: 6db4c5567368bac4aa9cdb0d63b4e48b, type: 3}
+  itemName: Crowbar
+  description: 
+  isStackable: 0
   PositionOffset: {x: 0.29, y: -0.2, z: 0.573}
   RotationOffset: {x: 0, y: -3.44, z: 0}
   HandType: 0

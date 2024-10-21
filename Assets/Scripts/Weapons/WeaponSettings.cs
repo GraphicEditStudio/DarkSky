@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Inventory.Items;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
 namespace Weapons
 {
     [CreateAssetMenu(menuName = "DarkSky/Weapon Settings")]
-    public class WeaponSettings : ScriptableObject
+    public class WeaponSettings : ItemScriptable
     {
         
 
         [Header("Visuals")]
-        public GameObject ModelPrefab;
         public Vector3 PositionOffset;
         public Vector3 RotationOffset;
         
@@ -52,7 +51,7 @@ namespace Weapons
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
             LastShootTime = 0;
             TrailPool = new ObjectPool<TrailRenderer>(CreateTrail);
-            Model = Instantiate(ModelPrefab, Parent);
+            Model = Instantiate(Prefab, Parent);
             Model.transform.localPosition = PositionOffset;
             Model.transform.localRotation = Quaternion.Euler(RotationOffset);
 

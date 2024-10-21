@@ -22,6 +22,7 @@ namespace Weapons
         {
             weaponSettings = Resources.LoadAll<WeaponSettings>("Weapons");
             this.weaponManager = new EquippedWeaponManager(weaponSettings.Length);
+            
             for (var i = 0; i < weaponSettings.Length; i++)
             {
                 var weapon = weaponSettings[i];
@@ -41,33 +42,31 @@ namespace Weapons
             if (isFiring)
             {
                 var currentGun = weaponManager.GetCurrentGun();
-                if (currentGun)
+                if (!currentGun) return;
+                IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot().ToArray();
+                if (!currentGun.AutoFire)
                 {
-                    IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot().ToArray();
-                    if (!currentGun.AutoFire)
+                    isFiring = false;
+                }
+                if (hits.Any())
+                {
+                    foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
                     {
-                        isFiring = false;
-                    }
-                    if (hits.Any())
-                    {
-                        foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
+                        if (hit.CastHit.HasValue)
                         {
-                            if (hit.CastHit.HasValue)
-                            {
-                                var castHit = hit.CastHit.Value;
+                            var castHit = hit.CastHit.Value;
 
-                                var effects = defaultImpact;
-                                var hitbox = castHit.transform.GetComponent<Hitbox>();
-                                if (hitbox)
-                                {
-                                    hitbox.OnHit(currentGun.Damage, castHit);
-                                }
-                                else
-                                {
-                                    var instance = Instantiate(effects);
-                                    instance.transform.position = hit.HitPoint;
-                                    instance.transform.forward = castHit.normal;    
-                                }
+                            var effects = defaultImpact;
+                            var hitbox = castHit.transform.GetComponent<Hitbox>();
+                            if (hitbox)
+                            {
+                                hitbox.OnHit(currentGun.Damage, castHit);
+                            }
+                            else
+                            {
+                                var instance = Instantiate(effects);
+                                instance.transform.position = hit.HitPoint;
+                                instance.transform.forward = castHit.normal;    
                             }
                         }
                     }
