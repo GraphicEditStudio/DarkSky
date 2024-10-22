@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,12 +6,21 @@ using UnityEngine.AI;
 public class MoveDestination : MonoBehaviour
 {
 
-    public Transform goal;
+    [SerializeField] private Transform goal;
+    private NavMeshAgent _agent;
+    private void Start()
+    {
+        _agent  = GetComponent<NavMeshAgent>();
+    }
 
     void Update()
     {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
+        _agent.destination = goal.position;
+    }
+
+    public void StopMoving()
+    {
+        _agent.isStopped = true;
     }
 }
 
