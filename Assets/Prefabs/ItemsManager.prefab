@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7534057888404223066}
   - component: {fileID: 3297412060788486426}
   - component: {fileID: 1962200598739936981}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2595832793041049433}
   - component: {fileID: 5781408153157957539}
   - component: {fileID: 1195635880895820395}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 2327299515241904221}
   - component: {fileID: 7801809313913344127}
   - component: {fileID: 8717444221414991431}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 6520573234069436552}
   - component: {fileID: 8656973209370372783}
   - component: {fileID: 3409179786406092000}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 7633018018300217691}
   - component: {fileID: 9136229692206244374}
   - component: {fileID: 5211932316633408147}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3136590479074887069}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,6 +577,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed3ba4e4f796cb84e8fbbb1871d758bc, type: 2}
   - {fileID: 11400000, guid: 6bde24fc499ee0a439672597655c5673, type: 2}
   - {fileID: 11400000, guid: 33b7dc036cc28e749a0b66ba273c17c2, type: 2}
+  weaponsData: []
 --- !u!1 &5732377574181410704
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +656,7 @@ GameObject:
   - component: {fileID: 5063702227843297634}
   - component: {fileID: 435663462827764898}
   - component: {fileID: 2182371385042340540}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -792,7 +793,7 @@ GameObject:
   - component: {fileID: 4094464502446580201}
   - component: {fileID: 8645043401368918224}
   - component: {fileID: 2682712186304142562}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +900,7 @@ GameObject:
   - component: {fileID: 6549346687139189097}
   - component: {fileID: 6301601239091447642}
   - component: {fileID: 5310660766079470290}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +976,7 @@ GameObject:
   - component: {fileID: 8999969403521386845}
   - component: {fileID: 7421225449939472216}
   - component: {fileID: 8903849741704295972}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
