@@ -10,9 +10,11 @@ namespace Weapons
 {
     public class WeaponsController : MonoBehaviour
     {
+        public event Action<int, int, int, int> OnAmmoUpdate;
+        
         [SerializeField] private PlayerInput input;
         [SerializeField] private GameObject defaultImpact;
-        
+
         private WeaponSettings[] weaponSettings;
         private EquippedWeaponManager weaponManager;
         private GameObject[] weaponModels;
@@ -22,7 +24,6 @@ namespace Weapons
         {
             weaponSettings = Resources.LoadAll<WeaponSettings>("Weapons");
             this.weaponManager = new EquippedWeaponManager(weaponSettings.Length);
-            
             for (var i = 0; i < weaponSettings.Length; i++)
             {
                 var weapon = weaponSettings[i];
@@ -43,12 +44,15 @@ namespace Weapons
             {
                 var currentGun = weaponManager.GetCurrentGun();
                 if (!currentGun) return;
-                IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits = currentGun.Shoot().ToArray();
+                
+                (bool didShoot, IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits) = currentGun.Shoot();
+                
                 if (!currentGun.AutoFire)
                 {
                     isFiring = false;
                 }
-                if (hits.Any())
+                
+                if (didShoot)
                 {
                     foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
                     {
@@ -81,8 +85,29 @@ namespace Weapons
 
         private void EquipWeapon(int slot)
         {
+            if (slot == weaponManager.GetEquippedSlot())
+                return;
+            
+            var currentWeapon = weaponManager.GetCurrentGun();
+            if (currentWeapon)
+            {
+                currentWeapon.AmmoHandler.OnUpdate -= OnAmmoManagerUpdate;
+            }
+            var weaponEquipped = weaponManager.SwapToSlot(slot);
+            if (weaponEquipped)
+            {
+                weaponEquipped.AmmoHandler.OnUpdate += OnAmmoManagerUpdate;
+                weaponEquipped.AmmoHandler.ManualUpdate();
+            }
+            else
+            {
+                OnAmmoUpdate?.Invoke(0, 0, 0, 0);
+            }
+        }
 
-            weaponManager.SwapToSlot(slot);
+        private void OnAmmoManagerUpdate(int clipSize, int ammoSize, int inClip, int ammo)
+        {
+            OnAmmoUpdate?.Invoke(clipSize, ammoSize, inClip, ammo);
         }
     }
 }
