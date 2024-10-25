@@ -73,3 +73,5 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   MissDistance: 100
   SimulationSpeed: 100
+  ClipSize: 4
+  AmmoCapacity: 16

@@ -10,8 +10,6 @@ namespace Weapons
     [CreateAssetMenu(menuName = "DarkSky/Weapon Settings")]
     public class WeaponSettings : ItemScriptable
     {
-        
-
         [Header("Visuals")]
         public Vector3 PositionOffset;
         public Vector3 RotationOffset;
@@ -40,11 +38,17 @@ namespace Weapons
         public float MissDistance = 100f;
         public float SimulationSpeed = 100f;
 
+        [Header("Ammo")] 
+        public int ClipSize;
+        public int AmmoCapacity;
+        
         private MonoBehaviour ActiveMonoBehaviour;
         private GameObject Model; // might not need
         private float LastShootTime = 0;
         private ParticleSystem ShootSystem;
         private ObjectPool<TrailRenderer> TrailPool;
+        
+        public AmmoHandler AmmoHandler;
 
         public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
         {
@@ -54,8 +58,9 @@ namespace Weapons
             Model = Instantiate(Prefab, Parent);
             Model.transform.localPosition = PositionOffset;
             Model.transform.localRotation = Quaternion.Euler(RotationOffset);
-
             ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
+            this.AmmoHandler = new AmmoHandler();
+            AmmoHandler.Initialize(ClipSize, ClipSize, 0, AmmoCapacity);
         }
 
         public void EnableModel()
@@ -76,31 +81,39 @@ namespace Weapons
             Model.SetActive(false);
         }
 
-        public IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> Shoot()
+        public (bool didShoot, IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits) Shoot()
         {
             if (Time.time > FireRate + LastShootTime)
             {
-                LastShootTime = Time.time;
                 if (!IsMelee)
                 {
-                    return ShootSpread();
+                    var canShoot = AmmoHandler.GrabAmmo();
+                    if (canShoot)
+                    {
+                        LastShootTime = Time.time;
+                        if (ShootSystem)
+                        {
+                            // MuzzleFlash
+                            ShootSystem.Play(true);
+                        }
+                        return (true, ShootSpread());
+                    }
+                    else
+                    {
+                        Debug.Log("Out of Ammo");
+                    }
                 }
                 else
                 {
-                    Debug.Log("Melee Attacks");
+                    Debug.Log("Melee Attack");
                 }
             }
 
-            return new List<(RaycastHit? CastHit, Vector3 HitPoint)>();
+            return (false, new List<(RaycastHit? CastHit, Vector3 HitPoint)>());
         }
 
         private IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> ShootSpread()
         {
-            if (ShootSystem)
-            {
-                // MuzzleFlash
-                ShootSystem.Play(true);
-            }
             var screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
             var point = Camera.main.ScreenToWorldPoint(screenPoint);
             var forward = Camera.main.transform.forward;
