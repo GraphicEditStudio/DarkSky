@@ -76,6 +76,17 @@ namespace Weapons
                     }
                 }
             }
+            else
+            {
+                if (input.actions["Reload"].WasPressedThisFrame())
+                {
+                    var currentGun = weaponManager.GetCurrentGun();
+                    if (currentGun && currentGun.AmmoHandler.ReloadAllowed())
+                    {
+                        currentGun.AmmoHandler.Reload();
+                    }
+                }
+            }
         }
 
         private void IsFiring(bool isFiring)

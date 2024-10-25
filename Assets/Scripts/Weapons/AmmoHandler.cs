@@ -54,6 +54,11 @@ namespace Weapons
         {
             return inClip < clipSize;
         }
+
+        public bool ReloadAllowed()
+        {
+            return NeedsReload() && CanReload();
+        }
         
         public void Reload()
         {
