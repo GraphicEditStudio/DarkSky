@@ -18,37 +18,37 @@ namespace Platinio
 		{
 			get
 			{
-				if(m_instance == null)
+				if (m_instance == null)
 				{
-					
-					//get all the singletones
-					T[] singletons = GameObject.FindObjectsOfType( typeof(T) ) as T[];
 
-					if(singletons != null)
+					//get all the singletones
+					T[] singletons = GameObject.FindObjectsOfType(typeof(T)) as T[];
+
+					if (singletons != null)
 					{
-						if(singletons.Length == 1)
+						if (singletons.Length == 1)
 						{
 
 							m_instance = singletons[0];
 							return m_instance;
 						}
 
-						else if(singletons.Length > 1)
+						else if (singletons.Length > 1)
 						{
-							Debug.LogWarning("You have more thah one " + typeof( T ).Name + " In the scene, you only need one , all the instances will be destroyed for create a new one");
+							Debug.LogWarning("You have more thah one " + typeof(T).Name + " In the scene, you only need one , all the instances will be destroyed for create a new one");
 
 							m_instance = singletons[0];
 
-							for(int n = 1 ; n < singletons.Length ; n++)
+							for (int n = 1; n < singletons.Length; n++)
 							{
-								Destroy( singletons[n].gameObject );
+								Destroy(singletons[n].gameObject);
 							}
 
 							return m_instance;
 						}
 					}
 
-					GameObject go = new GameObject( typeof(T).Name );
+					GameObject go = new GameObject(typeof(T).Name);
 					m_instance = go.AddComponent<T>();
 
 				}
@@ -64,7 +64,7 @@ namespace Platinio
 		{
 			get
 			{
-				if(m_instance == null)
+				if (m_instance == null)
 					return false;
 				return m_instance.m_alive;
 			}
@@ -79,13 +79,13 @@ namespace Platinio
 		}
 
 
-		[SerializeField] private bool 	m_destroyOnLoad	= true;
+		[SerializeField] private bool m_destroyOnLoad = true;
 		private bool m_alive = true;
 
 
 		protected virtual void Awake()
 		{
-			if( !ReferenceEquals( (object)instance , (object)gameObject.GetComponent<T>() ))
+			if (!ReferenceEquals((object)instance, (object)gameObject.GetComponent<T>()))
 			{
 				//destroy repeat instance
 				Destroy(gameObject);
@@ -96,9 +96,9 @@ namespace Platinio
 		{
 			T singleton = instance;
 
-			if(!DestroyOnLoad)
+			if (!DestroyOnLoad)
 			{
-				DontDestroyOnLoad( m_instance );
+				DontDestroyOnLoad(m_instance);
 			}
 
 

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Extensions;
 using Inventory.Items;
+using Items;
 using UnityEngine;
 using Utils;
+using Weapons;
 
 namespace Inventory
 {
@@ -16,7 +17,12 @@ namespace Inventory
         private IInventoryView view;
         
         public List<ItemScriptable> itemsData;
+        public List<WeaponSettings> weaponsData;
         public ObservableList<Item> PlayerItems { get; private set; }
+
+        public delegate void ItemCollectedDelegate(EItemType type, ItemScriptable data);
+        public event ItemCollectedDelegate OnItemCollected;
+        
         
         #region Unity Hooks
         protected override void OnAwake()
@@ -55,27 +61,34 @@ namespace Inventory
         #endregion Unity Hooks
 
         #region Item Details
+
+        private ItemScriptable GetItem(string id)
+        {
+            var dataMerge = new List<ItemScriptable>(itemsData);
+            dataMerge.AddRange(weaponsData);
+            return dataMerge.FirstOrDefault(data => data.Id == id);
+        }
         public string GetItemName(string id)
         {
-            var data = itemsData.FirstOrDefault(d => d.Id == id);
+            var data = GetItem(id);
             return data == null ? "" : data.Name;
         }
 
         public string GetItemDescription(string id)
         {
-            var data = itemsData.FirstOrDefault(d => d.Id == id);
+            var data = GetItem(id);
             return data == null ? "" : data.Description;
         }
 
         public Texture GetItemTexture(string id)
         {
-            var data = itemsData.FirstOrDefault(d => d.Id == id);
+            var data = GetItem(id);
             return data == null ? null : data.Sprite.texture;
         }
 
         public Sprite GetItemSprite(string id)
         {
-            var data = itemsData.FirstOrDefault(d => d.Id == id);
+            var data = GetItem(id);
             return data == null ? null : data.Sprite;
         }
         
@@ -86,6 +99,7 @@ namespace Inventory
         public void ItemCollected(ItemScriptable itemScriptable)
         {
             PlayerItems.Add(new Item(itemScriptable));
+            OnItemCollected?.Invoke(itemScriptable.Type, itemScriptable);
         }
         #endregion Item Behavior
     }

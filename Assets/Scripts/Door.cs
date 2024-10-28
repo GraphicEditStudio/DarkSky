@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     Vector3 _doorClosedPos;
     Vector3 _doorOpenPos;
     public GameObject door;
+    public GameObject doorUI;
 
     private void Awake()
     {
@@ -15,14 +16,20 @@ public class Door : MonoBehaviour
         _doorOpenPos = new Vector3(door.transform.position.x, 5f, door.transform.position.z);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        doorUI.SetActive(true);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         //if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Input.GetKey("e"))
         {
-
             OpeningDoor();
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -30,6 +37,7 @@ public class Door : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CloseingDoor();
+            doorUI.SetActive(false);
         }
     }
 
