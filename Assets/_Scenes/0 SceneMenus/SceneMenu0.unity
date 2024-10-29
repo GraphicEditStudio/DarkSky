@@ -395,6 +395,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 876973895364987306, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146831976828340032, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3739348354729875395, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -414,6 +422,14 @@ PrefabInstance:
     - target: {fileID: 4201057867105930841, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4946924747715236407, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051127972603603260, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -74.999985
       objectReference: {fileID: 0}
     - target: {fileID: 5781525895041916792, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
       propertyPath: m_AnchorMax.x

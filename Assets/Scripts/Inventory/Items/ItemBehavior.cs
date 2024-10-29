@@ -18,12 +18,12 @@ namespace Inventory.Items
         private Camera camera;
         void Awake()
         {
-           camera = Camera.main;
+            camera = Camera.main;
         }
 
         private void LateUpdate()
         {
-            if (showLabelOnFocus && labelCanvas.activeSelf && camera != null) 
+            if (showLabelOnFocus && labelCanvas.activeSelf && camera != null)
             {
                 labelCanvas.transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
             }
@@ -52,29 +52,31 @@ namespace Inventory.Items
             {
                 if (!Application.isPlaying)
                 {
-                    UnityEditor.EditorApplication.delayCall += ()=>
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.delayCall += () =>
                     {
                         DestroyImmediate(item.gameObject);
                     };
+#endif
                 }
                 else
                 {
                     Destroy(item.gameObject);
                 }
-               
+
             }
 
             if (itemScriptable.Prefab != null)
             {
                 var newItem = Instantiate(itemScriptable.Prefab, meshContainer.transform);
                 newItem.name = itemScriptable.Name;
-                
+
                 foreach (var t in newItem.GetComponentsInChildren<Transform>())
                 {
                     t.gameObject.layer = LayerMask.NameToLayer("Default");
                 }
             }
-            
+
             currentItem = itemScriptable;
 
             if (label != null)
