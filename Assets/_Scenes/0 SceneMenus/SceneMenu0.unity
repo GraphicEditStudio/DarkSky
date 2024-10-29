@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -477,8 +478,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3739348354729875395, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1870884561}
   m_SourcePrefab: {fileID: 100100000, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+--- !u!1 &1870884558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3739348354729875395, guid: efaaa69aee6e6d8408d549f72dccd696, type: 3}
+  m_PrefabInstance: {fileID: 1463659837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1870884561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870884558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2107585609
+      Data2: 1294801167
+      Data3: -1000051041
+      Data4: 430159421
+    Path: event:/Music/MainMenu
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
