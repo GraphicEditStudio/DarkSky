@@ -45,3 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
+  defaultImpact: {fileID: 0}
+  targetTransform: {fileID: 0}
+  intensity: 0.02
+  intensityX: 1
+  effectiveSpeed: 4
+  sprintEffectiveSpeed: 8
+  swayMultiplier: 2
+  smooth: 8
+  swapRotation: 45
+  swapDistance: 0.005
+  swapDuration: 0.3
+  reloadRotation: -20
+  reloadDistance: 0

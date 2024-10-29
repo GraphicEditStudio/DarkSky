@@ -577,7 +577,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed3ba4e4f796cb84e8fbbb1871d758bc, type: 2}
   - {fileID: 11400000, guid: 6bde24fc499ee0a439672597655c5673, type: 2}
   - {fileID: 11400000, guid: 33b7dc036cc28e749a0b66ba273c17c2, type: 2}
-  weaponsData: []
+  weaponsData:
+  - {fileID: 11400000, guid: 8fd4b1f3e3e114443a0b12d05130b718, type: 2}
+  - {fileID: 11400000, guid: 050d36454d5d18240abfdcfb2c01764a, type: 2}
+  - {fileID: 11400000, guid: 3ce0cf7db1658f646bce4df7a64e6ba9, type: 2}
+  ammoData:
+  - {fileID: 11400000, guid: 50ce9355b8ec0b74886448f94fd44baf, type: 2}
+  - {fileID: 11400000, guid: 87634bf81d703d2438fe9bb4a4b29076, type: 2}
 --- !u!1 &5732377574181410704
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,14 +18,14 @@ namespace Weapons
             {
                 _weaponSlots[i] = null;
             }
-            InventoryManager.Instance.OnItemCollected += OnWeaponCollected;
+            InventoryManager.Instance.OnItemCollected += OnItemCollected;
         }
 
         ~EquippedWeaponManager()
         {
             if (InventoryManager.Instance != null)
             {
-                InventoryManager.Instance.OnItemCollected -= OnWeaponCollected;
+                InventoryManager.Instance.OnItemCollected -= OnItemCollected;
             }
         }
         
@@ -89,16 +89,31 @@ namespace Weapons
             return _equippedSlot;
         }
 
-        public void OnWeaponCollected(EItemType type, ItemScriptable data)
+        public void OnItemCollected(EItemType type, ItemScriptable data)
         {
-            if (type != EItemType.Weapon)
-                return;
-
-            var weaponData = data as WeaponSettings;
-            if (weaponData != null)
+            var weapon = data as WeaponSettings;
+            if (weapon != null)
             {
-                AddGun(weaponData);
+                WeaponCollected(weapon);
+                return;
             }
+
+            var ammo = data as AmmoSettings;
+            if (ammo != null)
+            {
+                AmmoCollected(ammo);
+                return;
+            }
+        }
+
+        private void WeaponCollected(WeaponSettings data)
+        {
+            AddGun(data);
+        }
+
+        private void AmmoCollected(AmmoSettings data)
+        {
+            data.Collected();
         }
     }
 }
