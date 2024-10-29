@@ -52,6 +52,13 @@ namespace Inventory.UnityUI
         public void ItemAdded(Item item)
         {
             var data = InventoryManager.Instance.GetItem(item.Id);
+            
+            if (data == null)
+            {
+                Debug.LogError($"No item found for item id: {item.Id}");
+                return;
+            }
+            
             var slot = Instantiate(uiSlotPrefab, uiSlotContainer);
             var itemName = data.Name;
             slot.name = itemName;
