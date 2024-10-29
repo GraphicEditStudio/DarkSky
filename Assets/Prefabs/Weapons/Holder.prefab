@@ -50,5 +50,6 @@ MonoBehaviour:
   intensity: 0.02
   intensityX: 1
   effectiveSpeed: 4
+  sprintEffectiveSpeed: 8
   swayMultiplier: 2
   smooth: 8

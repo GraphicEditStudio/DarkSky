@@ -5,6 +5,7 @@ using System.Linq;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Weapons
 {
@@ -21,6 +22,7 @@ namespace Weapons
         [SerializeField] private float intensity;
         [SerializeField] private float intensityX;
         [SerializeField] private float effectiveSpeed;
+        [SerializeField] private float sprintEffectiveSpeed;
         private Vector3 _originalOffset;
         private float _sinTime;
 
@@ -114,9 +116,10 @@ namespace Weapons
             
             var moveRaw = input.actions["Move"].ReadValue<Vector2>();
             var inputVector = new Vector3(moveRaw.y, 0f, moveRaw.x);
+            var speed = input.actions["Sprint"].IsPressed() ? sprintEffectiveSpeed : effectiveSpeed;
             if (inputVector.magnitude > 0f)
             {
-                _sinTime += Time.deltaTime * effectiveSpeed;
+                _sinTime += Time.deltaTime * speed;
             }
             else
             {
