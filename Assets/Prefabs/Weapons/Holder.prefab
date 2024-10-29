@@ -53,3 +53,8 @@ MonoBehaviour:
   sprintEffectiveSpeed: 8
   swayMultiplier: 2
   smooth: 8
+  swapRotation: 45
+  swapDistance: 0.005
+  swapDuration: 0.3
+  reloadRotation: -20
+  reloadDistance: 0
