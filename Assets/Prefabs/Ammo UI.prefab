@@ -406,6 +406,7 @@ MonoBehaviour:
   AllAmmoText: {fileID: 2974174870023566673}
   ClipText: {fileID: 8995570926901381260}
   AmmoText: {fileID: 2015188596175413533}
+  weaponsController: {fileID: 0}
 --- !u!1 &6916958416237474045
 GameObject:
   m_ObjectHideFlags: 0
