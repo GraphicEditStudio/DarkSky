@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Inventory;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,7 +55,11 @@ namespace Weapons
             {
                 var weapon = weaponSettings[i];
                 weapon.Spawn(transform, this);
-                this.weaponManager.AddGun(i, weapon);
+                //this.weaponManager.AddGun(i, weapon);
+                // this code should be removed, we should not start with weapons like this,
+                // we should have a way to select which items/weapons to start within the inventory
+                // temp workaround
+                InventoryManager.Instance.ItemCollected(weapon);
                 var slotIndex = i;
                 input.actions[$"Weapon {slotIndex + 1}"].performed += (ctx) => EquipWeapon(slotIndex);
             }

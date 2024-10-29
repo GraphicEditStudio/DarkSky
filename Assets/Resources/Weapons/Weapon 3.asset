@@ -19,6 +19,8 @@ MonoBehaviour:
   itemName: Rifle
   description: 
   isStackable: 0
+  maxStack: 99
+  amount: 1
   PositionOffset: {x: 0.4, y: -0.25, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
   HandType: 1
@@ -73,6 +75,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   MissDistance: 100
   SimulationSpeed: 100
+  InitialAmmo: {fileID: 11400000, guid: 87634bf81d703d2438fe9bb4a4b29076, type: 2}
   ClipSize: 4
   AmmoCapacity: 16
   ReloadTime: 2

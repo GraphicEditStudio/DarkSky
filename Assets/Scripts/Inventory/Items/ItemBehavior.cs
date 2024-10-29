@@ -40,7 +40,7 @@ namespace Inventory.Items
             Destroy(gameObject);
         }
 
-        private void OnValidate()
+        protected virtual void OnValidate()
         {
             if (itemScriptable == null || itemScriptable == currentItem)
                 return;
@@ -63,13 +63,16 @@ namespace Inventory.Items
                 }
                
             }
-            
-            var newItem = Instantiate(itemScriptable.Prefab, meshContainer.transform);
-            newItem.name = itemScriptable.Name;
 
-            foreach (var t in newItem.GetComponentsInChildren<Transform>())
+            if (itemScriptable.Prefab != null)
             {
-                t.gameObject.layer = LayerMask.NameToLayer("Default");
+                var newItem = Instantiate(itemScriptable.Prefab, meshContainer.transform);
+                newItem.name = itemScriptable.Name;
+                
+                foreach (var t in newItem.GetComponentsInChildren<Transform>())
+                {
+                    t.gameObject.layer = LayerMask.NameToLayer("Default");
+                }
             }
             
             currentItem = itemScriptable;

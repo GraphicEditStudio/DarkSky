@@ -14,6 +14,8 @@ namespace Inventory.Items
         [SerializeField] protected string itemName = "";
         [SerializeField] protected string description = "";
         [SerializeField] protected bool isStackable = false;
+        [SerializeField, Min(1)] protected int maxStack = 99;
+        [SerializeField, Min(1)] protected int amount = 1;
 
         public EItemType Type => itemType;
         public string Name => itemName;
@@ -21,5 +23,7 @@ namespace Inventory.Items
         public GameObject Prefab => prefab;
         public string Description => description;
         public bool IsStackable => isStackable;
+        public int MaxStack => maxStack;
+        public int Amount => amount;
     }
 }
