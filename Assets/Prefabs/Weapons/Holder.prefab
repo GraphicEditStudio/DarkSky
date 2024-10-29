@@ -45,3 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
+  defaultImpact: {fileID: 0}
+  minX: 0
+  maxX: 0
+  minY: 0
+  swaySpeed: 0
+  sprintSwaySpeed: 0
+  switchMinY: 0
+  switchSpeed: 0
+  swayMultiplier: 2
+  smooth: 8

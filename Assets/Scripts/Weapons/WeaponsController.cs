@@ -15,6 +15,10 @@ namespace Weapons
         [SerializeField] private PlayerInput input;
         [SerializeField] private GameObject defaultImpact;
 
+        [Header("Rifle Follow")]
+        [SerializeField] private float swayMultiplier;
+        [SerializeField] private float smooth;
+        
         private WeaponSettings[] weaponSettings;
         private EquippedWeaponManager weaponManager;
         private GameObject[] weaponModels;
@@ -87,6 +91,13 @@ namespace Weapons
                     }
                 }
             }
+
+            var mouseRaw = input.actions["Look"].ReadValue<Vector2>();
+            Quaternion rotationX = Quaternion.AngleAxis(-(mouseRaw.y * swayMultiplier), Vector3.right);
+            Quaternion rotationY = Quaternion.AngleAxis(mouseRaw.x * swayMultiplier, Vector3.up);
+            Quaternion targetRotation = rotationX * rotationY;
+            transform.localRotation =
+                Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
         }
 
         private void IsFiring(bool isFiring)
