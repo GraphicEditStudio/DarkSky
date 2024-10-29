@@ -15,6 +15,15 @@ namespace Weapons
         [SerializeField] private PlayerInput input;
         [SerializeField] private GameObject defaultImpact;
 
+        [Header("Sway")] 
+        [SerializeField] private Transform targetTransform;
+        private Vector3 _offset;
+        [SerializeField] private float intensity;
+        [SerializeField] private float intensityX;
+        [SerializeField] private float effectiveSpeed;
+        private Vector3 _originalOffset;
+        private float _sinTime;
+
         [Header("Rifle Follow")]
         [SerializeField] private float swayMultiplier;
         [SerializeField] private float smooth;
@@ -40,6 +49,7 @@ namespace Weapons
             isFiring = false;
             input.actions["Shoot"].performed += (ctx) => IsFiring(true);
             input.actions["Shoot"].canceled += (ctx) => IsFiring(false);
+            _originalOffset = _offset;
         }
 
         private void Update()
@@ -92,12 +102,38 @@ namespace Weapons
                 }
             }
 
+            // Look sway
             var mouseRaw = input.actions["Look"].ReadValue<Vector2>();
             Quaternion rotationX = Quaternion.AngleAxis(-(mouseRaw.y * swayMultiplier), Vector3.right);
             Quaternion rotationY = Quaternion.AngleAxis(mouseRaw.x * swayMultiplier, Vector3.up);
             Quaternion targetRotation = rotationX * rotationY;
             transform.localRotation =
                 Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
+
+            
+            
+            var moveRaw = input.actions["Move"].ReadValue<Vector2>();
+            var inputVector = new Vector3(moveRaw.y, 0f, moveRaw.x);
+            if (inputVector.magnitude > 0f)
+            {
+                _sinTime += Time.deltaTime * effectiveSpeed;
+            }
+            else
+            {
+                _sinTime = 0f;
+            }
+            
+            float sinAmountY = -Mathf.Abs((intensity * Mathf.Sin(_sinTime)));
+            Vector3 sinAmountX = transform.right * intensity * MathF.Cos(_sinTime) * intensityX;
+            _offset = new Vector3
+            {
+                x = _originalOffset.x,
+                y = _originalOffset.y + sinAmountY,
+                z = _originalOffset.z
+            };
+            _offset += sinAmountX;
+            
+            transform.position = targetTransform.position + _offset;
         }
 
         private void IsFiring(bool isFiring)
