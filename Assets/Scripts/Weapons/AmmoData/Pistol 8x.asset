@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c049b8170bb04581b287abbe04363768, type: 3}
+  m_Name: Pistol 8x
+  m_EditorClassIdentifier: 
+  id: a2156e60-4338-45f1-ac82-0a6d0993cd48
+  itemType: 4
+  sprite: {fileID: 21300000, guid: 662a74ce95a241943bd63cd1f7f215d3, type: 3}
+  prefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
+  itemName: Pistol Ammo
+  description: Grants 8 bullets for regular pistol
+  isStackable: 1
+  maxStack: 99
+  amount: 8
+  weapon: {fileID: 11400000, guid: 050d36454d5d18240abfdcfb2c01764a, type: 2}

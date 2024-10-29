@@ -10,27 +10,22 @@ namespace Weapons
     [CreateAssetMenu(menuName = "DarkSky/Weapon Settings")]
     public class WeaponSettings : ItemScriptable
     {
-        [Header("Visuals")]
-        public Vector3 PositionOffset;
+        [Header("Visuals")] public Vector3 PositionOffset;
         public Vector3 RotationOffset;
-        
-        [Header("Types")]
-        public WeaponHandType HandType;
+
+        [Header("Types")] public WeaponHandType HandType;
         public bool IsMelee;
         public bool AutoFire;
-        
-        [Header("Damage")]
-        public float Damage;
 
-        [Header("Shoot Configuration")]
-         public LayerMask HitMask;
-         public Vector3 Spread = new (0.1f, 0.1f, 0.1f);
-         public float FireRate = 0.25f;
-         public int BulletsPerFire = 1;
-         public float SpeadNumber;
+        [Header("Damage")] public float Damage;
 
-        [Header("Trail Config")] 
-        public Material Material;
+        [Header("Shoot Configuration")] public LayerMask HitMask;
+        public Vector3 Spread = new(0.1f, 0.1f, 0.1f);
+        public float FireRate = 0.25f;
+        public int BulletsPerFire = 1;
+        public float SpeadNumber;
+
+        [Header("Trail Config")] public Material Material;
         public AnimationCurve WidthCurve;
         public float Duration;
         public float MinVertexDistance = 0.1f;
@@ -38,17 +33,17 @@ namespace Weapons
         public float MissDistance = 100f;
         public float SimulationSpeed = 100f;
 
-        [Header("Ammo")] 
+        [Header("Ammo")] public AmmoSettings InitialAmmo;
         public int ClipSize;
         public int AmmoCapacity;
         public float ReloadTime;
-        
+
         private MonoBehaviour ActiveMonoBehaviour;
         private GameObject Model; // might not need
         private float LastShootTime = 0;
         private ParticleSystem ShootSystem;
         private ObjectPool<TrailRenderer> TrailPool;
-        
+
         public AmmoHandler AmmoHandler;
 
         public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour)
@@ -61,7 +56,7 @@ namespace Weapons
             Model.transform.localRotation = Quaternion.Euler(RotationOffset);
             ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
             this.AmmoHandler = new AmmoHandler();
-            AmmoHandler.Initialize(ClipSize, ClipSize, 0, AmmoCapacity);
+            AmmoHandler.Initialize(0, ClipSize, 0, AmmoCapacity);
         }
 
         public void EnableModel()
@@ -146,7 +141,7 @@ namespace Weapons
                     shootDirection,
                     out RaycastHit hit,
                     float.MaxValue,
-                    HitMask, 
+                    HitMask,
                     QueryTriggerInteraction.Ignore
                 )
                )
@@ -154,7 +149,7 @@ namespace Weapons
                 hitPoint = hit.point;
                 castHit = hit;
             }
-            
+
             //Debug.DrawRay(shootingPoint, hitPoint, UnityEngine.Color.red, 20);
             // ActiveMonoBehaviour.StartCoroutine(
             //     PlayTrail(
@@ -163,7 +158,7 @@ namespace Weapons
             //         castHit ?? new RaycastHit()
             //     )
             // );
-            
+
             return (castHit, hitPoint);
         }
 
@@ -187,22 +182,22 @@ namespace Weapons
                 remainingDistance -= SimulationSpeed * Time.deltaTime;
                 yield return null;
             }
-        
+
             instance.transform.position = EndPoint;
-        
+
             if (Hit.collider != null)
             {
                 //HandleImpact(Hit.transform.gameObject, EndPoint, Hit.normal, ImpactType, 0);
                 Debug.Log("HIT SOMETHING!");
             }
-            
+
             yield return new WaitForSeconds(Duration);
             yield return null;
             instance.emitting = false;
             instance.gameObject.SetActive(false);
             TrailPool.Release(instance);
         }
-        
+
         private TrailRenderer CreateTrail()
         {
             var instance = new GameObject("Bullet Trail");
@@ -214,7 +209,7 @@ namespace Weapons
             trail.minVertexDistance = MinVertexDistance;
             trail.emitting = false;
             trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        
+
             return trail;
         }
     }
