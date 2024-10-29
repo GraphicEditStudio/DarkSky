@@ -93,3 +93,4 @@ MonoBehaviour:
   SimulationSpeed: 50
   ClipSize: 8
   AmmoCapacity: 32
+  ReloadTime: 1

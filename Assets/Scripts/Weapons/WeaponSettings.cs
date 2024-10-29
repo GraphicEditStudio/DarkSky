@@ -41,6 +41,7 @@ namespace Weapons
         [Header("Ammo")] 
         public int ClipSize;
         public int AmmoCapacity;
+        public float ReloadTime;
         
         private MonoBehaviour ActiveMonoBehaviour;
         private GameObject Model; // might not need
