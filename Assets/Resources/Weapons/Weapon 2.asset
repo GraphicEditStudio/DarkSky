@@ -12,59 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073423d1ce7049b09759eec6c7aad9b2, type: 3}
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
-  id: db6d09ac-e93b-443a-8d2b-e69bf32e7f6c
+  id: ee41ecc0-018f-4b50-92e9-32b88717f9c3
   itemType: 3
-  sprite: {fileID: 21300000, guid: 7b3ea26c7512e72458116bfb21a1fbc0, type: 3}
-  prefab: {fileID: 1371249466203329434, guid: 5b27dd184740ce347aafef15fb887744, type: 3}
-  itemName: Pistol
+  sprite: {fileID: 21300000, guid: c07eacfd355dac44f8415ad3db7273ef, type: 3}
+  prefab: {fileID: 8015207811728964754, guid: 9de0e747c2277134c8396696db9bfd37, type: 3}
+  itemName: Rifle
   description: 
   isStackable: 0
   maxStack: 99
   amount: 1
   PositionOffset: {x: 0.4, y: -0.25, z: 0.612}
   RotationOffset: {x: -7, y: -12.55, z: 0}
-  HandType: 0
+  HandType: 1
   IsMelee: 0
-  AutoFire: 0
-  Damage: 20
+  AutoFire: 1
+  Damage: 5
   HitMask:
     serializedVersion: 2
     m_Bits: 1
-  Spread: {x: 0, y: 0, z: 0}
-  FireRate: 0.25
-  BulletsPerFire: 1
+  Spread: {x: 0.1, y: 0.1, z: 0.1}
+  FireRate: 1
+  BulletsPerFire: 10
   SpeadNumber: 0
-  Material: {fileID: 2100000, guid: f371b2f928df3084b87808afc7762160, type: 2}
+  Material: {fileID: 0}
   WidthCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0073509244
-      value: 0.98101264
-      inSlope: 0.09085384
-      outSlope: 0.09085384
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.25534123
-    - serializedVersion: 3
-      time: 0.98529816
-      value: -0.012915492
-      inSlope: -1.574748
-      outSlope: -1.574748
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.08871978
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Duration: 0.05
+  Duration: 0
   MinVertexDistance: 0.1
   Color:
     serializedVersion: 2
-    key0: {r: 0.8962264, g: 0.097232126, b: 0.097232126, a: 1}
-    key1: {r: 0.10196079, g: 0.10196079, b: 0.10196079, a: 0}
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -91,9 +73,9 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  MissDistance: 50
-  SimulationSpeed: 50
-  InitialAmmo: {fileID: 11400000, guid: 50ce9355b8ec0b74886448f94fd44baf, type: 2}
-  ClipSize: 8
-  AmmoCapacity: 32
-  ReloadTime: 1
+  MissDistance: 100
+  SimulationSpeed: 100
+  InitialAmmo: {fileID: 11400000, guid: 87634bf81d703d2438fe9bb4a4b29076, type: 2}
+  ClipSize: 4
+  AmmoCapacity: 16
+  ReloadTime: 2

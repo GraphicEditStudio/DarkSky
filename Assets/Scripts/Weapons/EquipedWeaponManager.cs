@@ -45,7 +45,7 @@ namespace Weapons
             return GetWeaponAtSlot(slot);
         }
 
-        private WeaponSettings GetWeaponAtSlot(int slot)
+        public WeaponSettings GetWeaponAtSlot(int slot)
         {
             try
             {

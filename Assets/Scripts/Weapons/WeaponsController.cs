@@ -55,15 +55,16 @@ namespace Weapons
             {
                 var weapon = weaponSettings[i];
                 weapon.Spawn(transform, this);
-                //this.weaponManager.AddGun(i, weapon);
+                this.weaponManager.AddGun(i, weapon);
+                weapon.DisableModel();
                 // this code should be removed, we should not start with weapons like this,
                 // we should have a way to select which items/weapons to start within the inventory
                 // temp workaround
-                InventoryManager.Instance.ItemCollected(weapon);
+                //InventoryManager.Instance.ItemCollected(weapon);
                 var slotIndex = i;
                 input.actions[$"Weapon {slotIndex + 1}"].performed += (ctx) => EquipWeapon(slotIndex);
             }
-            EquipWeapon(0);
+            //EquipWeapon(0);
             isFiring = false;
             input.actions["Shoot"].performed += (ctx) => IsFiring(true);
             input.actions["Shoot"].canceled += (ctx) => IsFiring(false);
@@ -163,9 +164,16 @@ namespace Weapons
 
         private void EquipWeapon(int slot)
         {
-            if (_swapingGun || _reloadingGun || slot == weaponManager.GetEquippedSlot())
+            var newWeapon = weaponManager.GetWeaponAtSlot(slot);
+            if (_swapingGun || _reloadingGun || slot == weaponManager.GetEquippedSlot() || !newWeapon)
                 return;
 
+            var hasWeapon = InventoryManager.Instance.PlayerItems.FirstOrDefault(i => i.Id.CompareTo(newWeapon.InitialAmmo.Id) == 0);
+            if (hasWeapon == null)
+            {
+                return;
+            }
+            
             StartCoroutine(SwitchWeaponRoutine(slot));
         }
 
