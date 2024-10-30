@@ -8,9 +8,12 @@ public class MoveDestination : MonoBehaviour
 
     [SerializeField] private Transform goal;
     private NavMeshAgent _agent;
+
     private void Start()
     {
-        _agent  = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
+        //_agent.isStopped = true;
+
     }
 
     void Update()

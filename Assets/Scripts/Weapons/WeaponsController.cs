@@ -13,11 +13,11 @@ namespace Weapons
     public class WeaponsController : MonoBehaviour
     {
         public event Action<int, int, int, int> OnAmmoUpdate;
-        
+
         [SerializeField] private PlayerInput input;
         [SerializeField] private GameObject defaultImpact;
 
-        [Header("Sway")] 
+        [Header("Sway")]
         [SerializeField] private Transform targetTransform;
         private Vector3 _offset;
         [SerializeField] private float intensity;
@@ -31,17 +31,17 @@ namespace Weapons
         [SerializeField] private float swayMultiplier;
         [SerializeField] private float smooth;
 
-        [Header("Swap Weapon")] 
+        [Header("Swap Weapon")]
         [SerializeField] private float swapRotation;
         [SerializeField] private float swapDistance;
         [SerializeField] private float swapDuration;
         private bool _swapingGun;
-        
+
         [Header("Reload Weapon")]
         [SerializeField] private float reloadRotation;
         [SerializeField] private float reloadDistance;
         private bool _reloadingGun;
-        
+
         private WeaponSettings[] weaponSettings;
         private EquippedWeaponManager weaponManager;
         private GameObject[] weaponModels;
@@ -79,22 +79,22 @@ namespace Weapons
             Quaternion targetRotation = rotationX * rotationY;
             transform.localRotation =
                 Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
-            
-            
+
+
             if (_swapingGun || _reloadingGun) return;
-            
+
             if (isFiring)
             {
                 var currentGun = weaponManager.GetCurrentGun();
                 if (!currentGun) return;
-                
+
                 (bool didShoot, IEnumerable<(RaycastHit? CastHit, Vector3 HitPoint)> hits) = currentGun.Shoot();
-                
+
                 if (!currentGun.AutoFire)
                 {
                     isFiring = false;
                 }
-                
+
                 if (didShoot)
                 {
                     foreach ((RaycastHit? CastHit, Vector3 HitPoint) hit in hits)
@@ -113,7 +113,7 @@ namespace Weapons
                             {
                                 var instance = Instantiate(effects);
                                 instance.transform.position = hit.HitPoint;
-                                instance.transform.forward = castHit.normal;    
+                                instance.transform.forward = castHit.normal;
                             }
                         }
                     }
@@ -130,7 +130,7 @@ namespace Weapons
                     }
                 }
             }
-            
+
             var moveRaw = input.actions["Move"].ReadValue<Vector2>();
             var inputVector = new Vector3(moveRaw.y, 0f, moveRaw.x);
             var speed = input.actions["Sprint"].IsPressed() ? sprintEffectiveSpeed : effectiveSpeed;
@@ -142,7 +142,7 @@ namespace Weapons
             {
                 _sinTime = 0f;
             }
-            
+
             float sinAmountY = -Mathf.Abs((intensity * Mathf.Sin(_sinTime)));
             Vector3 sinAmountX = transform.right * intensity * MathF.Cos(_sinTime) * intensityX;
             _offset = new Vector3
@@ -152,7 +152,7 @@ namespace Weapons
                 z = _originalOffset.z
             };
             _offset += sinAmountX;
-            
+
             transform.position = targetTransform.position + _offset;
         }
 
@@ -172,8 +172,8 @@ namespace Weapons
         private IEnumerator ReloadWeapon(AmmoHandler ammoHandler, float reloadDuration)
         {
             _reloadingGun = true;
-            yield return MoveAndRotateOverTime(reloadRotation, reloadDistance, Vector3.up, reloadDuration/2);
-            yield return MoveAndRotateOverTime(0, reloadDistance, Vector3.down, reloadDuration/2);
+            yield return MoveAndRotateOverTime(reloadRotation, reloadDistance, Vector3.up, reloadDuration / 2);
+            yield return MoveAndRotateOverTime(0, reloadDistance, Vector3.down, reloadDuration / 2);
             ammoHandler.Reload();
             _reloadingGun = false;
         }
@@ -206,8 +206,8 @@ namespace Weapons
         {
             OnAmmoUpdate?.Invoke(clipSize, ammoSize, inClip, ammo);
         }
-        
-        
+
+
         private IEnumerator MoveAndRotateOverTime(float rotationAngle, float moveDistance, Vector3 moveDirection, float duration)
         {
             float elapsedTime = 0f;
