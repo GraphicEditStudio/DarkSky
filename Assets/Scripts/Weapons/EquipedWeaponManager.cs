@@ -18,25 +18,18 @@ namespace Weapons
             {
                 _weaponSlots[i] = null;
             }
-            InventoryManager.Instance.OnItemCollected += OnItemCollected;
         }
 
-        ~EquippedWeaponManager()
-        {
-            if (InventoryManager.Instance != null)
-            {
-                InventoryManager.Instance.OnItemCollected -= OnItemCollected;
-            }
-        }
-        
         public void AddGun(int slot, [CanBeNull] WeaponSettings gun)
         {
             _weaponSlots[slot] = gun;
         }
 
-        public void AddGun([CanBeNull] WeaponSettings gun)
+        public int AddGun([CanBeNull] WeaponSettings gun)
         {
+            var slot = weaponSlotsMaxIndex;
             _weaponSlots[weaponSlotsMaxIndex++] = gun;
+            return slot;
         }
 
         public WeaponSettings GetCurrentGun()
@@ -87,28 +80,6 @@ namespace Weapons
         public int GetEquippedSlot()
         {
             return _equippedSlot;
-        }
-
-        public void OnItemCollected(EItemType type, ItemScriptable data)
-        {
-            var weapon = data as WeaponSettings;
-            if (weapon != null)
-            {
-                WeaponCollected(weapon);
-                return;
-            }
-
-            var ammo = data as AmmoSettings;
-            if (ammo != null)
-            {
-                AmmoCollected(ammo);
-                return;
-            }
-        }
-
-        private void WeaponCollected(WeaponSettings data)
-        {
-            AddGun(data);
         }
 
         private void AmmoCollected(AmmoSettings data)

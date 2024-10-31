@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Inventory;
+using Inventory.Items;
+using Items;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -55,7 +57,7 @@ namespace Weapons
             {
                 var weapon = weaponSettings[i];
                 weapon.Spawn(transform, this);
-                this.weaponManager.AddGun(i, weapon);
+                //this.weaponManager.AddGun(i, weapon);
                 weapon.DisableModel();
                 // this code should be removed, we should not start with weapons like this,
                 // we should have a way to select which items/weapons to start within the inventory
@@ -69,6 +71,51 @@ namespace Weapons
             input.actions["Shoot"].performed += (ctx) => IsFiring(true);
             input.actions["Shoot"].canceled += (ctx) => IsFiring(false);
             _originalOffset = _offset;
+        }
+
+        private void Start()
+        {
+            InventoryManager.Instance.OnItemCollected += OnItemCollected;
+        }
+
+        private void OnItemCollected(EItemType type, ItemScriptable data)
+        {
+            var weapon = data as WeaponSettings;
+            if (weapon != null)
+            {
+                var slot = weaponManager.AddGun(weapon);
+                EquipWeapon(slot);
+                if (weapon.InitialAmmo != null)
+                {
+                    InventoryManager.Instance.ItemCollected(weapon.InitialAmmo);
+                }
+                return;
+            }
+            
+            var ammo = data as AmmoSettings;
+            if (ammo != null)
+            {
+                AmmoCollected(ammo);
+                return;
+            }
+        }
+        
+        private void AmmoCollected(AmmoSettings data)
+        {
+            var weapon = weaponSettings.FirstOrDefault(d => d.InitialAmmo == data);
+            var weaponIndex = weaponSettings.ToList().IndexOf(weapon);
+            var equippedWeapon = weaponManager.GetWeaponAtSlot(weaponIndex);
+            if (!equippedWeapon)
+            {
+                weaponManager.AddGun(weaponIndex, weapon);
+                EquipWeapon(weaponIndex);
+            }
+            data.Collected();
+        }
+
+        private void OnDestroy()
+        {
+            InventoryManager.Instance.OnItemCollected -= OnItemCollected;
         }
 
         private void Update()
