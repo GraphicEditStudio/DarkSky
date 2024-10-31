@@ -14,12 +14,18 @@ public class Door : MonoBehaviour
     {
         _doorClosedPos = door.transform.position;
         _doorOpenPos = new Vector3(door.transform.position.x, 5f, door.transform.position.z);
+        doorUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
-        doorUI.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            doorUI.SetActive(true);
+        }
+
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -30,14 +36,16 @@ public class Door : MonoBehaviour
             OpeningDoor();
         }
 
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            CloseingDoor();
             doorUI.SetActive(false);
+            CloseingDoor();
+
         }
     }
 
@@ -45,12 +53,14 @@ public class Door : MonoBehaviour
 
     void OpeningDoor()
     {
+        doorUI.SetActive(false);
         door.transform.Move(_doorOpenPos, 2.0f);
     }
 
 
     void CloseingDoor()
     {
+        doorUI.SetActive(false);
         door.transform.Move(_doorClosedPos, 2.0f);
     }
 

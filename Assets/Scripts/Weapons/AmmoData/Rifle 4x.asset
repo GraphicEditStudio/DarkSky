@@ -20,5 +20,5 @@ MonoBehaviour:
   description: Grants 4 bullets for the rifle
   isStackable: 1
   maxStack: 99
-  amount: 4
+  amount: 20
   weapon: {fileID: 11400000, guid: 050d36454d5d18240abfdcfb2c01764a, type: 2}

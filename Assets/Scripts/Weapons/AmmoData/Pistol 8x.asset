@@ -20,5 +20,5 @@ MonoBehaviour:
   description: Grants 8 bullets for regular pistol
   isStackable: 1
   maxStack: 99
-  amount: 8
+  amount: 20
   weapon: {fileID: 11400000, guid: 8fd4b1f3e3e114443a0b12d05130b718, type: 2}
