@@ -85,8 +85,13 @@ namespace Weapons
             {
                 var slot = weaponManager.AddGun(weapon);
                 EquipWeapon(slot);
+                if (weapon.InitialAmmo != null)
+                {
+                    InventoryManager.Instance.ItemCollected(weapon.InitialAmmo);
+                }
                 return;
             }
+            
             var ammo = data as AmmoSettings;
             if (ammo != null)
             {

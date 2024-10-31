@@ -68,7 +68,7 @@ namespace Inventory
             var dataMerge = new List<ItemScriptable>(itemsData);
             dataMerge.AddRange(weaponsData);
             dataMerge.AddRange(ammoData);
-            return dataMerge.FirstOrDefault(data => data.Id == id);
+            return dataMerge.FirstOrDefault(data => data != null && data.Id == id);
         }
         public string GetItemName(string id)
         {
