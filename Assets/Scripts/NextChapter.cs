@@ -9,7 +9,7 @@ public class NextChapter : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
         }
 
     }
