@@ -1765,25 +1765,9 @@ PrefabInstance:
       propertyPath: goal
       value: 
       objectReference: {fileID: 1171053692}
-    - target: {fileID: 4634768318378035441, guid: 6d3055537161c294b8fd0773e35441f4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4841809281495825753, guid: 6d3055537161c294b8fd0773e35441f4, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841809281495825753, guid: 6d3055537161c294b8fd0773e35441f4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000020229017361873, guid: 6d3055537161c294b8fd0773e35441f4, type: 3}
-      propertyPath: m_AutoRepath
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000020229017361873, guid: 6d3055537161c294b8fd0773e35441f4, type: 3}
-      propertyPath: m_AutoTraverseOffMeshLink
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
