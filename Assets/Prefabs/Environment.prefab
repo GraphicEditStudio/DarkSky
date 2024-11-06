@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11000001
+  m_VoxelSize: 0.016666668
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: dcd472b2a2b2c224c9ba27d83bb25999, type: 2}
   m_BuildHeightMesh: 0
@@ -3132,13 +3132,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1332759811744888940, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1360338154260742525, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909637887343421981, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1972895362986510154, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2299007105245290034, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548133742121330355, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743628174887864388, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3913409071594122177, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
@@ -3152,6 +3172,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4608393596296615375, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651131705332871242, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5603346233178159350, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3164,11 +3192,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 10.44
       objectReference: {fileID: 0}
+    - target: {fileID: 6603210587886225395, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7071788131200865640, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7304844239949188754, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457264211800830326, guid: 3b79af7f6d4e5df4f96ab9c993b890b3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
