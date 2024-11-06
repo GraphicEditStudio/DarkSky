@@ -887,6 +887,10 @@ PrefabInstance:
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
+    - target: {fileID: 5899438690304664967, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.93
+      objectReference: {fileID: 0}
     - target: {fileID: 6871775999097797442, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
       value: 

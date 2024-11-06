@@ -1,5 +1,5 @@
 using UnityEngine;
-using Platinio.TweenEngine;
+using PrimeTween;
 
 
 public class Door : MonoBehaviour
@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         _doorClosedPos = door.transform.position;
-        _doorOpenPos = new Vector3(door.transform.position.x, 5f, door.transform.position.z);
+        _doorOpenPos = new Vector3(door.transform.position.x, 4f, door.transform.position.z);
         doorUI.SetActive(false);
     }
 
@@ -54,14 +54,17 @@ public class Door : MonoBehaviour
     void OpeningDoor()
     {
         doorUI.SetActive(false);
-        door.transform.Move(_doorOpenPos, 2.0f);
+        //door.transform.Move(_doorOpenPos, 2.0f);
+        Tween.Position(door.transform, endValue: _doorOpenPos, duration: 2);
+
     }
 
 
     void CloseingDoor()
     {
         doorUI.SetActive(false);
-        door.transform.Move(_doorClosedPos, 2.0f);
+        //door.transform.Move(_doorClosedPos, 2.0f);
+        Tween.Position(door.transform, endValue: _doorClosedPos, duration: 2);
     }
 
 }
