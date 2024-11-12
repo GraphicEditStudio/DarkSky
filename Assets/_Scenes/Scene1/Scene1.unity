@@ -851,12 +851,20 @@ PrefabInstance:
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
+    - target: {fileID: 1489222353029984849, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1985686574328621635, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
     - target: {fileID: 2179236029520204480, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494930875168851377, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3514953825085230909, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
@@ -867,6 +875,10 @@ PrefabInstance:
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
+    - target: {fileID: 5006965895389972065, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5023648275797592609, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
       value: 
@@ -879,6 +891,10 @@ PrefabInstance:
       propertyPath: doorUI
       value: 
       objectReference: {fileID: 953188781}
+    - target: {fileID: 5493219792409926991, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5574585996277443515, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
       value: 
@@ -889,7 +905,7 @@ PrefabInstance:
       objectReference: {fileID: 953188781}
     - target: {fileID: 5899438690304664967, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.93
+      value: -0.216
       objectReference: {fileID: 0}
     - target: {fileID: 6871775999097797442, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: doorUI
@@ -950,6 +966,34 @@ PrefabInstance:
     - target: {fileID: 8345070699079395523, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_Name
       value: Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345070699079395523, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345070700331616360, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345070700331616361, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405640964177040023, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405640964177040023, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: dcd472b2a2b2c224c9ba27d83bb25999, type: 2}
+    - target: {fileID: 8405640964177040023, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_UseGeometry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986840622472946204, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2179236029520204480, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
